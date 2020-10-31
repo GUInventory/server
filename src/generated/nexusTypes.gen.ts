@@ -4,9 +4,17 @@
  */
 
 import * as PrismaClient from ".prisma/client"
-
-
-
+import { core } from "@nexus/schema"
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    dateTime<FieldName extends string>(fieldName: FieldName, opts?: core.ScalarInputFieldConfig<core.GetGen3<"inputTypes", TypeName, FieldName>>): void // "Date";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+  }
+}
 declare global {
   interface NexusGenCustomOutputProperties<TypeName extends string> {
     crud: NexusPrisma<TypeName, 'crud'>
@@ -39,6 +47,7 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  Date: any
 }
 
 export interface NexusGenRootTypes {
@@ -46,8 +55,23 @@ export interface NexusGenRootTypes {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  Item: PrismaClient.Item;
   Mutation: {};
+  Position2D: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+  }
+  Position3D: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+    z?: number | null; // Int
+  }
   Query: {};
+  Size: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+    z?: number | null; // Int
+  }
   User: PrismaClient.User;
 }
 
@@ -59,6 +83,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   Float: NexusGenScalars['Float'];
   Boolean: NexusGenScalars['Boolean'];
   ID: NexusGenScalars['ID'];
+  Date: NexusGenScalars['Date'];
 }
 
 export interface NexusGenFieldTypes {
@@ -66,13 +91,37 @@ export interface NexusGenFieldTypes {
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
   }
+  Item: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    image: string | null; // String
+    name: string | null; // String
+    position: NexusGenRootTypes['Position3D'] | null; // Position3D
+    size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+    value: number | null; // Int
+  }
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
   }
+  Position2D: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+  }
+  Position3D: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+    z: number | null; // Int
+  }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+  }
+  Size: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+    z: number | null; // Int
   }
   User: { // field return type
     email: string | null; // String
@@ -87,13 +136,37 @@ export interface NexusGenFieldTypeNames {
     token: 'String'
     user: 'User'
   }
+  Item: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    image: 'String'
+    name: 'String'
+    position: 'Position3D'
+    size: 'Size'
+    updatedAt: 'Date'
+    value: 'Int'
+  }
   Mutation: { // field return type name
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
   }
+  Position2D: { // field return type name
+    x: 'Int'
+    y: 'Int'
+  }
+  Position3D: { // field return type name
+    x: 'Int'
+    y: 'Int'
+    z: 'Int'
+  }
   Query: { // field return type name
     me: 'User'
     users: 'User'
+  }
+  Size: { // field return type name
+    x: 'Int'
+    y: 'Int'
+    z: 'Int'
   }
   User: { // field return type name
     email: 'String'
@@ -124,7 +197,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthenticationPayload" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "AuthenticationPayload" | "Item" | "Mutation" | "Position2D" | "Position3D" | "Query" | "Size" | "User";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
@@ -132,7 +205,7 @@ export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Date" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

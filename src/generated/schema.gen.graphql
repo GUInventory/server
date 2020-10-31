@@ -7,6 +7,22 @@ type AuthenticationPayload {
   user: User
 }
 
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+type Item {
+  createdAt: Date
+  id: ID
+  image: String
+  name: String
+  position: Position3D
+  size: Size
+  updatedAt: Date
+  value: Int
+}
+
 """Input of login"""
 input LoginInput {
   email: String!
@@ -16,6 +32,19 @@ input LoginInput {
 type Mutation {
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
+}
+
+"""Position in 2 dimension"""
+type Position2D {
+  x: Int
+  y: Int
+}
+
+"""Position in 3 dimension"""
+type Position3D {
+  x: Int
+  y: Int
+  z: Int
 }
 
 type Query {
@@ -28,6 +57,13 @@ input RegisterInput {
   email: String!
   name: String!
   password: String!
+}
+
+"""Size of an entity"""
+type Size {
+  x: Int
+  y: Int
+  z: Int
 }
 
 type User {
