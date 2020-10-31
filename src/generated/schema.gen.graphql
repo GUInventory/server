@@ -2,10 +2,18 @@
 ### Do not make changes to this file directly
 
 
-type AttributeType {
-  color: String
+type Attribute {
   createdAt: Date
   id: ID
+  type: AttributeTypeEnum
+  updatedAt: Date
+  value: String
+}
+
+type AttributeType {
+  createdAt: Date
+  id: ID
+  name: String
   type: AttributeTypeEnum
   updatedAt: Date
 }

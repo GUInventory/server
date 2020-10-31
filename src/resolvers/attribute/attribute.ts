@@ -1,10 +1,10 @@
 import { objectType } from '@nexus/schema'
 
-export const AttributeType = objectType({
-  name: 'AttributeType',
+export const Attribute = objectType({
+  name: 'Attribute',
   definition(t) {
     t.id('id')
-    t.string('name')
+    t.string('value')
 
     t.field('type', {
       type: 'AttributeTypeEnum',

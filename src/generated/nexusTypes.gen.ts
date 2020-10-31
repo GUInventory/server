@@ -52,6 +52,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
+  Attribute: PrismaClient.Attribute;
   AttributeType: PrismaClient.AttributeType;
   AuthenticationPayload: { // root type
     token?: string | null; // String
@@ -94,10 +95,17 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
-  AttributeType: { // field return type
-    color: string | null; // String
+  Attribute: { // field return type
     createdAt: NexusGenScalars['Date'] | null; // Date
     id: string | null; // ID
+    type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+    value: string | null; // String
+  }
+  AttributeType: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
     type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
     updatedAt: NexusGenScalars['Date'] | null; // Date
   }
@@ -175,10 +183,17 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
-  AttributeType: { // field return type name
-    color: 'String'
+  Attribute: { // field return type name
     createdAt: 'Date'
     id: 'ID'
+    type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
+    value: 'String'
+  }
+  AttributeType: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
     type: 'AttributeTypeEnum'
     updatedAt: 'Date'
   }
@@ -276,7 +291,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
+export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
