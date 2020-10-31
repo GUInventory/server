@@ -1,4 +1,5 @@
 export * from './authentication'
+export * from './category'
 export * from './item'
 export * from './outgoing'
 export * from './storage'

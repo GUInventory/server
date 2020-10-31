@@ -55,6 +55,7 @@ export interface NexusGenRootTypes {
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  Category: PrismaClient.Category;
   Item: PrismaClient.Item;
   Mutation: {};
   Outgoing: PrismaClient.Outgoing;
@@ -93,6 +94,13 @@ export interface NexusGenFieldTypes {
   AuthenticationPayload: { // field return type
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
+  }
+  Category: { // field return type
+    color: string | null; // String
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    updatedAt: NexusGenScalars['Date'] | null; // Date
   }
   Item: { // field return type
     createdAt: NexusGenScalars['Date'] | null; // Date
@@ -160,6 +168,13 @@ export interface NexusGenFieldTypeNames {
   AuthenticationPayload: { // field return type name
     token: 'String'
     user: 'User'
+  }
+  Category: { // field return type name
+    color: 'String'
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    updatedAt: 'Date'
   }
   Item: { // field return type name
     createdAt: 'Date'
@@ -244,7 +259,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthenticationPayload" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
+export type NexusGenObjectNames = "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
