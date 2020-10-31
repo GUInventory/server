@@ -3,6 +3,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/server.ts",
+    "generate": "yarn generate:prisma && yarn generate:nexus",
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only src/schema",
     "migrate:save": "prisma migrate save --experimental",
@@ -14,7 +15,9 @@
     "@prisma/cli": "2.10.0",
     "@prisma/client": "2.10.0",
     "apollo-server": "^2.18.2",
+    "bcrypt": "^5.0.0",
     "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
     "nexus-plugin-prisma": "^0.23.1"
   },
   "devDependencies": {

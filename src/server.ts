@@ -11,7 +11,7 @@ const server = createServer(app)
 const prisma = new PrismaClient()
 
 const apollo = new ApolloServer({
-  context: () => ({ prisma }),
+  context: ({ req }) => ({ req, prisma }),
   schema 
 })
 

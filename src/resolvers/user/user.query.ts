@@ -1,4 +1,5 @@
-import { extendType, stringArg } from '@nexus/schema';
+import { extendType, stringArg } from '@nexus/schema'
+import { getUserID } from '../../utils/authentication'
 
 export const UserQuery = extendType({
   type: 'Query',
@@ -12,5 +13,12 @@ export const UserQuery = extendType({
         return ctx.prisma.user.findMany()
       },
     })
-}
+
+    t.field('me', {
+      type: 'User',
+      resolve: (_, {}, ctx) => {
+        return ctx.prisma.user.findOne({ where: { id: getUserID(ctx) } })
+      },
+    })
+  }
 })
