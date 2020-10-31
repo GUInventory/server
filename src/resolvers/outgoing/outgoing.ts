@@ -7,7 +7,7 @@ export const Outgoing = objectType({
     t.string('description')
     t.int('value')
 
-    t.dateTime('createdAt')
-    t.dateTime('updatedAt')
+    // t.dateTime('createdAt')
+    // t.dateTime('updatedAt')
   },
 })

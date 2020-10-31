@@ -7,7 +7,7 @@ export const Category = objectType({
     t.string('name')
     t.string('color')
 
-    t.dateTime('createdAt')
-    t.dateTime('updatedAt')
+    // t.dateTime('createdAt')
+    // t.dateTime('updatedAt')
   },
 })

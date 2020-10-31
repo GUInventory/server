@@ -30,7 +30,7 @@ export const Item = objectType({
       },
     })
 
-    t.dateTime('createdAt')
-    t.dateTime('updatedAt')
+    // t.dateTime('createdAt')
+    // t.dateTime('updatedAt')
   },
 })

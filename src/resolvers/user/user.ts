@@ -13,7 +13,7 @@ export const User = objectType({
       resolve: async ({ globalRole }) => globalRole,
     })
 
-    t.dateTime('createdAt')
-    t.dateTime('updatedAt')
+    // t.dateTime('createdAt')
+    // t.dateTime('updatedAt')
   },
 })

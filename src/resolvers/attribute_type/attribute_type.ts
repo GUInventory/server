@@ -11,7 +11,7 @@ export const AttributeType = objectType({
       resolve: async ({ type }) => type,
     })
 
-    t.dateTime('createdAt')
-    t.dateTime('updatedAt')
+    // t.dateTime('createdAt')
+    // t.dateTime('updatedAt')
   },
 })
