@@ -34,6 +34,14 @@ type Mutation {
   register(data: RegisterInput!): AuthenticationPayload
 }
 
+type Outgoing {
+  createdAt: Date
+  description: String
+  id: ID
+  updatedAt: Date
+  value: Int
+}
+
 """Position in 2 dimension"""
 type Position2D {
   x: Int
