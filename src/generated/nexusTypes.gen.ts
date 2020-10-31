@@ -19,6 +19,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  LoginInput: { // input type
+    email: string; // String!
+    password: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -33,11 +37,17 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
+  AuthenticationPayload: { // root type
+    token?: string | null; // String
+    user?: NexusGenRootTypes['User'] | null; // User
+  }
+  Mutation: {};
   Query: {};
   User: PrismaClient.User;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  LoginInput: NexusGenInputs['LoginInput'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
   Float: NexusGenScalars['Float'];
@@ -46,6 +56,13 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  AuthenticationPayload: { // field return type
+    token: string | null; // String
+    user: NexusGenRootTypes['User'] | null; // User
+  }
+  Mutation: { // field return type
+    login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
+  }
   Query: { // field return type
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
@@ -58,6 +75,13 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  AuthenticationPayload: { // field return type name
+    token: 'String'
+    user: 'User'
+  }
+  Mutation: { // field return type name
+    login: 'AuthenticationPayload'
+  }
   Query: { // field return type name
     users: 'User'
   }
@@ -70,6 +94,11 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    login: { // args
+      data: NexusGenInputs['LoginInput']; // LoginInput!
+    }
+  }
   Query: {
     users: { // args
       world?: string | null; // String
@@ -82,9 +111,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Query" | "User";
+export type NexusGenObjectNames = "AuthenticationPayload" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = "LoginInput";
 
 export type NexusGenEnumNames = never;
 

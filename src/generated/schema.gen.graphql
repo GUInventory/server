@@ -2,6 +2,21 @@
 ### Do not make changes to this file directly
 
 
+type AuthenticationPayload {
+  token: String
+  user: User
+}
+
+"""Input of login"""
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  login(data: LoginInput!): AuthenticationPayload
+}
+
 type Query {
   users(world: String): [User]
 }
