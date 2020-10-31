@@ -2,9 +2,56 @@
 ### Do not make changes to this file directly
 
 
+type Attribute {
+  createdAt: Date
+  id: ID
+  type: AttributeTypeEnum
+  updatedAt: Date
+  value: String
+}
+
+type AttributeType {
+  createdAt: Date
+  id: ID
+  name: String
+  type: AttributeTypeEnum
+  updatedAt: Date
+}
+
+enum AttributeTypeEnum {
+  DATE
+  DATETIME
+  NUMBER
+  STRING
+}
+
 type AuthenticationPayload {
   token: String
   user: User
+}
+
+type Category {
+  color: String
+  createdAt: Date
+  id: ID
+  name: String
+  updatedAt: Date
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+type Item {
+  createdAt: Date
+  id: ID
+  image: String
+  name: String
+  position: Position3D
+  size: Size
+  updatedAt: Date
+  value: Int
 }
 
 """Input of login"""
@@ -16,6 +63,27 @@ input LoginInput {
 type Mutation {
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
+}
+
+type Outgoing {
+  createdAt: Date
+  description: String
+  id: ID
+  updatedAt: Date
+  value: Int
+}
+
+"""Position in 2 dimension"""
+type Position2D {
+  x: Int
+  y: Int
+}
+
+"""Position in 3 dimension"""
+type Position3D {
+  x: Int
+  y: Int
+  z: Int
 }
 
 type Query {
@@ -30,9 +98,49 @@ input RegisterInput {
   password: String!
 }
 
+type Role {
+  createdAt: Date
+  id: ID
+  roleType: RoleTypeEnum
+  updatedAt: Date
+}
+
+enum RoleTypeEnum {
+  ADMIN
+  EDITOR
+  USER
+}
+
+"""Size of an entity"""
+type Size {
+  x: Int
+  y: Int
+  z: Int
+}
+
+type Storage {
+  createdAt: Date
+  id: ID
+  name: String
+  position: Position2D
+  size: Size
+  updatedAt: Date
+}
+
 type User {
+  createdAt: Date
   email: String
+  globalRole: RoleTypeEnum
   id: ID
   name: String
   password: String
+  updatedAt: Date
+}
+
+type Warehouse {
+  createdAt: Date
+  id: ID
+  name: String
+  size: Size
+  updatedAt: Date
 }

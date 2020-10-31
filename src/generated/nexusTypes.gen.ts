@@ -4,9 +4,17 @@
  */
 
 import * as PrismaClient from ".prisma/client"
-
-
-
+import { core } from "@nexus/schema"
+declare global {
+  interface NexusGenCustomInputMethods<TypeName extends string> {
+    dateTime<FieldName extends string>(fieldName: FieldName, opts?: core.ScalarInputFieldConfig<core.GetGen3<"inputTypes", TypeName, FieldName>>): void // "Date";
+  }
+}
+declare global {
+  interface NexusGenCustomOutputMethods<TypeName extends string> {
+    dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+  }
+}
 declare global {
   interface NexusGenCustomOutputProperties<TypeName extends string> {
     crud: NexusPrisma<TypeName, 'crud'>
@@ -31,6 +39,8 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  AttributeTypeEnum: PrismaClient.AttributeTypeEnum
+  RoleTypeEnum: "ADMIN" | "EDITOR" | "USER"
 }
 
 export interface NexusGenScalars {
@@ -39,67 +49,245 @@ export interface NexusGenScalars {
   Float: number
   Boolean: boolean
   ID: string
+  Date: any
 }
 
 export interface NexusGenRootTypes {
+  Attribute: PrismaClient.Attribute;
+  AttributeType: PrismaClient.AttributeType;
   AuthenticationPayload: { // root type
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
   }
+  Category: PrismaClient.Category;
+  Item: PrismaClient.Item;
   Mutation: {};
+  Outgoing: PrismaClient.Outgoing;
+  Position2D: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+  }
+  Position3D: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+    z?: number | null; // Int
+  }
   Query: {};
+  Role: PrismaClient.Role;
+  Size: { // root type
+    x?: number | null; // Int
+    y?: number | null; // Int
+    z?: number | null; // Int
+  }
+  Storage: PrismaClient.Storage;
   User: PrismaClient.User;
+  Warehouse: PrismaClient.Warehouse;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
+  AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
+  RoleTypeEnum: NexusGenEnums['RoleTypeEnum'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
   Float: NexusGenScalars['Float'];
   Boolean: NexusGenScalars['Boolean'];
   ID: NexusGenScalars['ID'];
+  Date: NexusGenScalars['Date'];
 }
 
 export interface NexusGenFieldTypes {
+  Attribute: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+    value: string | null; // String
+  }
+  AttributeType: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
   AuthenticationPayload: { // field return type
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
+  }
+  Category: { // field return type
+    color: string | null; // String
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
+  Item: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    image: string | null; // String
+    name: string | null; // String
+    position: NexusGenRootTypes['Position3D'] | null; // Position3D
+    size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+    value: number | null; // Int
   }
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
   }
+  Outgoing: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    description: string | null; // String
+    id: string | null; // ID
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+    value: number | null; // Int
+  }
+  Position2D: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+  }
+  Position3D: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+    z: number | null; // Int
+  }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
+  Role: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    roleType: NexusGenEnums['RoleTypeEnum'] | null; // RoleTypeEnum
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
+  Size: { // field return type
+    x: number | null; // Int
+    y: number | null; // Int
+    z: number | null; // Int
+  }
+  Storage: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    position: NexusGenRootTypes['Position2D'] | null; // Position2D
+    size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
   User: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
     email: string | null; // String
+    globalRole: NexusGenEnums['RoleTypeEnum'] | null; // RoleTypeEnum
     id: string | null; // ID
     name: string | null; // String
     password: string | null; // String
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
+  Warehouse: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date'] | null; // Date
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Attribute: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
+    value: 'String'
+  }
+  AttributeType: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
+  }
   AuthenticationPayload: { // field return type name
     token: 'String'
     user: 'User'
+  }
+  Category: { // field return type name
+    color: 'String'
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    updatedAt: 'Date'
+  }
+  Item: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    image: 'String'
+    name: 'String'
+    position: 'Position3D'
+    size: 'Size'
+    updatedAt: 'Date'
+    value: 'Int'
   }
   Mutation: { // field return type name
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
   }
+  Outgoing: { // field return type name
+    createdAt: 'Date'
+    description: 'String'
+    id: 'ID'
+    updatedAt: 'Date'
+    value: 'Int'
+  }
+  Position2D: { // field return type name
+    x: 'Int'
+    y: 'Int'
+  }
+  Position3D: { // field return type name
+    x: 'Int'
+    y: 'Int'
+    z: 'Int'
+  }
   Query: { // field return type name
     me: 'User'
     users: 'User'
   }
+  Role: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    roleType: 'RoleTypeEnum'
+    updatedAt: 'Date'
+  }
+  Size: { // field return type name
+    x: 'Int'
+    y: 'Int'
+    z: 'Int'
+  }
+  Storage: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    position: 'Position2D'
+    size: 'Size'
+    updatedAt: 'Date'
+  }
   User: { // field return type name
+    createdAt: 'Date'
     email: 'String'
+    globalRole: 'RoleTypeEnum'
     id: 'ID'
     name: 'String'
     password: 'String'
+    updatedAt: 'Date'
+  }
+  Warehouse: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    size: 'Size'
+    updatedAt: 'Date'
   }
 }
 
@@ -124,15 +312,15 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthenticationPayload" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Date" | "Float" | "ID" | "Int" | "String";
 
 export type NexusGenUnionNames = never;
 

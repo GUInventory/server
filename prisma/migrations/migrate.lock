@@ -3,3 +3,7 @@
 20201030133402-init
 20201031115132-basic_schema
 20201031141953-add-name-to-user
+20201031150144-add-z-position-to-item
+20201031150509-fix-poisition-type
+20201031151928-add-name-to-attribute-type
+20201031152328-add-dates-to-role

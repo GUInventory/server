@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Storage",
+      "field": "positionX",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Storage",
+      "field": "poistionX"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Item",
+      "field": "positionX",
+      "type": "Int",
+      "arity": "Required"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Item",
+      "field": "poistionX"
+    }
+  ]
+}
