@@ -19,6 +19,8 @@
     "bcrypt": "^5.0.0",
     "graphql": "^15.4.0",
     "graphql-iso-date": "^3.6.1",
+    "graphql-middleware": "^4.0.2",
+    "graphql-shield": "^7.3.8",
     "jsonwebtoken": "^8.5.1",
     "nexus-plugin-prisma": "^0.23.1"
   },
