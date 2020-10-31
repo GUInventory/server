@@ -35,7 +35,7 @@ export const AuthenticationMutation = extendType({
       args: {
         data: RegisterInput.asArg({ required: true }),
       },
-      resolve: async (_, { data: { email, password } }, context) => {
+      resolve: async (_, { data: { email, name, password } }, context) => {
         const checkUser = await context.prisma.user.findOne({ where: { email } })
         if (checkUser !== null) {
           throw new AuthenticationError('Email already in use')
@@ -44,6 +44,7 @@ export const AuthenticationMutation = extendType({
           const user = await context.prisma.user.create({
             data: {
               email,
+              name,
               password: await hash(password, 10),
             },
           })
