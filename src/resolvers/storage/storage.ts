@@ -5,7 +5,7 @@ export const Storage = objectType({
   definition(t) {
     t.id('id')
     t.string('name')
-    
+
     t.field('size', {
       type: 'Size',
       resolve: async ({ sizeX, sizeY, sizeZ }) => {
@@ -13,7 +13,7 @@ export const Storage = objectType({
           x: sizeX,
           y: sizeY,
           z: sizeZ,
-        };
+        }
       },
     })
 
@@ -23,11 +23,11 @@ export const Storage = objectType({
         return {
           x: positionX,
           y: positionY,
-        };
+        }
       },
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

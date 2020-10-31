@@ -20,5 +20,5 @@ export const UserQuery = extendType({
         return ctx.prisma.user.findOne({ where: { id: getUserID(ctx) } })
       },
     })
-  }
+  },
 })

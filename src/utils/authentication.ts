@@ -1,4 +1,3 @@
-
 import { sign, verify } from 'jsonwebtoken'
 import { compare } from 'bcrypt'
 import { APP_SECRET } from '../config/environment'
@@ -10,8 +9,7 @@ interface Token {
   exp?: number
 }
 
-export const generateToken = (userID: number, options = {}) =>
-  sign({ userID }, APP_SECRET, options)
+export const generateToken = (userID: number, options = {}) => sign({ userID }, APP_SECRET, options)
 
 export const verifyToken = (token: string): Token =>
   verify(token.replace('Bearer ', '').replace(/"/g, ''), APP_SECRET) as Token

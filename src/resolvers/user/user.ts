@@ -10,10 +10,10 @@ export const User = objectType({
 
     t.field('globalRole', {
       type: 'RoleTypeEnum',
-      resolve: async ({ globalRole }) => globalRole
+      resolve: async ({ globalRole }) => globalRole,
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

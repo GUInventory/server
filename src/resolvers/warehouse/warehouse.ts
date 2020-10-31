@@ -5,7 +5,7 @@ export const Warehouse = objectType({
   definition(t) {
     t.id('id')
     t.string('name')
-    
+
     t.field('size', {
       type: 'Size',
       resolve: async ({ sizeX, sizeY, sizeZ }) => {
@@ -13,11 +13,11 @@ export const Warehouse = objectType({
           x: sizeX,
           y: sizeY,
           z: sizeZ,
-        };
+        }
       },
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })
