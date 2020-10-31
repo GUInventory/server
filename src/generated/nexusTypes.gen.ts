@@ -74,6 +74,7 @@ export interface NexusGenRootTypes {
   }
   Storage: PrismaClient.Storage;
   User: PrismaClient.User;
+  Warehouse: PrismaClient.Warehouse;
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
@@ -138,6 +139,13 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
     password: string | null; // String
   }
+  Warehouse: { // field return type
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    name: string | null; // String
+    size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
 }
 
 export interface NexusGenFieldTypeNames {
@@ -191,6 +199,13 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     password: 'String'
   }
+  Warehouse: { // field return type name
+    createdAt: 'Date'
+    id: 'ID'
+    name: 'String'
+    size: 'Size'
+    updatedAt: 'Date'
+  }
 }
 
 export interface NexusGenArgTypes {
@@ -214,7 +229,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthenticationPayload" | "Item" | "Mutation" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User";
+export type NexusGenObjectNames = "AuthenticationPayload" | "Item" | "Mutation" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 

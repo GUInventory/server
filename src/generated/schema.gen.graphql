@@ -81,3 +81,11 @@ type User {
   name: String
   password: String
 }
+
+type Warehouse {
+  createdAt: Date
+  id: ID
+  name: String
+  size: Size
+  updatedAt: Date
+}
