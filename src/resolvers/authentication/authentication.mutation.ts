@@ -3,6 +3,8 @@ import { AuthenticationError } from 'apollo-server'
 import { hash } from 'bcrypt'
 import { comparePasswords, generateToken } from '../../utils/authentication'
 import { LoginInput, RegisterInput } from './authentication.input'
+import { somethingWentWrong } from '../../errors/global'
+import { invalidEmailOrPassword, emailAlreadyInUse } from '../../errors/authentication'
 
 export const AuthenticationMutation = extendType({
   type: 'Mutation',
@@ -15,12 +17,12 @@ export const AuthenticationMutation = extendType({
       resolve: async (_, { data: { email, password } }, context) => {
         const user = await context.prisma.user.findOne({ where: { email } })
         if (user === null) {
-          throw new AuthenticationError('Invalid email or password')
+          throw new AuthenticationError(invalidEmailOrPassword)
         }
 
         const isValidPassword = await comparePasswords(password, user.password)
         if (!isValidPassword) {
-          throw new AuthenticationError('Invalid email or password')
+          throw new AuthenticationError(invalidEmailOrPassword)
         }
 
         return {
@@ -38,7 +40,7 @@ export const AuthenticationMutation = extendType({
       resolve: async (_, { data: { email, name, password } }, context) => {
         const checkUser = await context.prisma.user.findOne({ where: { email } })
         if (checkUser !== null) {
-          throw new AuthenticationError('Email already in use')
+          throw new AuthenticationError(emailAlreadyInUse)
         }
         try {
           const user = await context.prisma.user.create({
@@ -53,7 +55,7 @@ export const AuthenticationMutation = extendType({
             user,
           }
         } catch (error) {
-          throw new AuthenticationError(error)
+          throw new AuthenticationError(somethingWentWrong)
         }
       },
     })
