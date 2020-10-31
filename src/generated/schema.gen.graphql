@@ -66,6 +66,15 @@ type Size {
   z: Int
 }
 
+type Storage {
+  createdAt: Date
+  id: ID
+  name: String
+  position: Position2D
+  size: Size
+  updatedAt: Date
+}
+
 type User {
   email: String
   id: ID
