@@ -1,3 +1,4 @@
+export * from './attribute_type'
 export * from './authentication'
 export * from './category'
 export * from './item'

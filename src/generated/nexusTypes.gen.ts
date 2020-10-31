@@ -39,6 +39,7 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  AttributeTypeEnum: PrismaClient.AttributeTypeEnum
 }
 
 export interface NexusGenScalars {
@@ -51,6 +52,7 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenRootTypes {
+  AttributeType: PrismaClient.AttributeType;
   AuthenticationPayload: { // root type
     token?: string | null; // String
     user?: NexusGenRootTypes['User'] | null; // User
@@ -82,6 +84,7 @@ export interface NexusGenRootTypes {
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
+  AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
   Float: NexusGenScalars['Float'];
@@ -91,6 +94,13 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  AttributeType: { // field return type
+    color: string | null; // String
+    createdAt: NexusGenScalars['Date'] | null; // Date
+    id: string | null; // ID
+    type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date'] | null; // Date
+  }
   AuthenticationPayload: { // field return type
     token: string | null; // String
     user: NexusGenRootTypes['User'] | null; // User
@@ -165,6 +175,13 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  AttributeType: { // field return type name
+    color: 'String'
+    createdAt: 'Date'
+    id: 'ID'
+    type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
+  }
   AuthenticationPayload: { // field return type name
     token: 'String'
     user: 'User'
@@ -259,11 +276,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
+export type NexusGenObjectNames = "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Size" | "Storage" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "AttributeTypeEnum";
 
 export type NexusGenInterfaceNames = never;
 

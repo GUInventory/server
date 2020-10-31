@@ -1,4 +1,4 @@
-import { objectType, asNexusMethod } from "@nexus/schema"
+import { objectType, asNexusMethod, enumType } from "@nexus/schema"
 import { GraphQLDate } from 'graphql-iso-date'
 
 export const DateTime = asNexusMethod(GraphQLDate, 'dateTime')
@@ -32,3 +32,7 @@ export const Position3D = objectType({
   },
 })
 
+export const AttributeTypeEnum = enumType({
+  name: 'AttributeTypeEnum',
+  members: ['STRING', 'DATE', 'DATETIME', 'NUMBER'],
+})
