@@ -6,10 +6,10 @@ export const Role = objectType({
     t.id('id')
     t.field('roleType', {
       type: 'RoleTypeEnum',
-      resolve: async ({ roleType }) => roleType
+      resolve: async ({ roleType }) => roleType,
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

@@ -1,4 +1,4 @@
-import { objectType, asNexusMethod, enumType } from "@nexus/schema"
+import { objectType, asNexusMethod, enumType } from '@nexus/schema'
 import { GraphQLDate } from 'graphql-iso-date'
 
 export const DateTime = asNexusMethod(GraphQLDate, 'dateTime')

@@ -12,13 +12,11 @@ const prisma = new PrismaClient()
 
 const apollo = new ApolloServer({
   context: ({ req }) => ({ req, prisma }),
-  schema 
+  schema,
 })
 
 apollo.applyMiddleware({ app })
 
 server.listen({ port: PORT }, () => {
-  process.stdout.write(
-    `🚀 Server running on :${PORT}\n`
-  )
+  process.stdout.write(`🚀 Server running on :${PORT}\n`)
 })

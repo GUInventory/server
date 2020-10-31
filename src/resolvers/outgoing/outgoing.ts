@@ -9,5 +9,5 @@ export const Outgoing = objectType({
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

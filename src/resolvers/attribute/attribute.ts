@@ -8,10 +8,10 @@ export const Attribute = objectType({
 
     t.field('type', {
       type: 'AttributeTypeEnum',
-      resolve: async ({ type }) => type
+      resolve: async ({ type }) => type,
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

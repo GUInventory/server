@@ -50,12 +50,12 @@ export const AuthenticationMutation = extendType({
           })
           return {
             token: generateToken(user.id),
-            user
+            user,
           }
         } catch (error) {
-          throw new AuthenticationError( error)
+          throw new AuthenticationError(error)
         }
       },
     })
-  }
+  },
 })

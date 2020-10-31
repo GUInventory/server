@@ -9,5 +9,5 @@ export const Category = objectType({
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })

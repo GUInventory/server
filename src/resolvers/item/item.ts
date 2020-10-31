@@ -7,7 +7,7 @@ export const Item = objectType({
     t.string('name')
     t.string('image')
     t.int('value')
-    
+
     t.field('size', {
       type: 'Size',
       resolve: async ({ sizeX, sizeY, sizeZ }) => {
@@ -15,7 +15,7 @@ export const Item = objectType({
           x: sizeX,
           y: sizeY,
           z: sizeZ,
-        };
+        }
       },
     })
 
@@ -26,11 +26,11 @@ export const Item = objectType({
           x: positionX,
           y: positionY,
           z: positionZ,
-        };
+        }
       },
     })
 
     t.dateTime('createdAt')
     t.dateTime('updatedAt')
-  }
+  },
 })
