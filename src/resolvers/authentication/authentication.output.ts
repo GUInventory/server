@@ -6,4 +6,4 @@ export const AuthenticationPayload = objectType({
     t.string('token')
     t.field('user', { type: 'User' })
   },
-});
+})

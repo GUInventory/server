@@ -1,7 +1,8 @@
 import { extendType } from '@nexus/schema'
 import { AuthenticationError } from 'apollo-server'
-import { comparePasswords, generateJWToken } from '../../utils/authentication'
-import { LoginInput } from './authentication.input'
+import { hash } from 'bcrypt'
+import { comparePasswords, generateToken } from '../../utils/authentication'
+import { LoginInput, RegisterInput } from './authentication.input'
 
 export const AuthenticationMutation = extendType({
   type: 'Mutation',
@@ -12,7 +13,7 @@ export const AuthenticationMutation = extendType({
         data: LoginInput.asArg({ required: true }),
       },
       resolve: async (_, { data: { email, password } }, context) => {
-        const user = await context.prisma.user.findOne({ where: { email } });
+        const user = await context.prisma.user.findOne({ where: { email } })
         if (user === null) {
           throw new AuthenticationError('Invalid email or password')
         }
@@ -23,8 +24,35 @@ export const AuthenticationMutation = extendType({
         }
 
         return {
-          token: generateJWToken(user.id),
+          token: generateToken(user.id),
           user,
+        }
+      },
+    })
+
+    t.field('register', {
+      type: 'AuthenticationPayload',
+      args: {
+        data: RegisterInput.asArg({ required: true }),
+      },
+      resolve: async (_, { data: { email, password } }, context) => {
+        const checkUser = await context.prisma.user.findOne({ where: { email } })
+        if (checkUser !== null) {
+          throw new AuthenticationError('Email already in use')
+        }
+        try {
+          const user = await context.prisma.user.create({
+            data: {
+              email,
+              password: await hash(password, 10),
+            },
+          })
+          return {
+            token: generateToken(user.id),
+            user
+          }
+        } catch (error) {
+          throw new AuthenticationError( error)
         }
       },
     })

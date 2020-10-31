@@ -23,6 +23,11 @@ export interface NexusGenInputs {
     email: string; // String!
     password: string; // String!
   }
+  RegisterInput: { // input type
+    email: string; // String!
+    name: string; // String!
+    password: string; // String!
+  }
 }
 
 export interface NexusGenEnums {
@@ -48,6 +53,7 @@ export interface NexusGenRootTypes {
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   LoginInput: NexusGenInputs['LoginInput'];
+  RegisterInput: NexusGenInputs['RegisterInput'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
   Float: NexusGenScalars['Float'];
@@ -62,8 +68,10 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
+    register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
   }
   Query: { // field return type
+    me: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
   }
   User: { // field return type
@@ -81,8 +89,10 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     login: 'AuthenticationPayload'
+    register: 'AuthenticationPayload'
   }
   Query: { // field return type name
+    me: 'User'
     users: 'User'
   }
   User: { // field return type name
@@ -97,6 +107,9 @@ export interface NexusGenArgTypes {
   Mutation: {
     login: { // args
       data: NexusGenInputs['LoginInput']; // LoginInput!
+    }
+    register: { // args
+      data: NexusGenInputs['RegisterInput']; // RegisterInput!
     }
   }
   Query: {
@@ -113,7 +126,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "AuthenticationPayload" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = "LoginInput";
+export type NexusGenInputNames = "LoginInput" | "RegisterInput";
 
 export type NexusGenEnumNames = never;
 

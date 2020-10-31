@@ -15,10 +15,19 @@ input LoginInput {
 
 type Mutation {
   login(data: LoginInput!): AuthenticationPayload
+  register(data: RegisterInput!): AuthenticationPayload
 }
 
 type Query {
+  me: User
   users(world: String): [User]
+}
+
+"""Input of register"""
+input RegisterInput {
+  email: String!
+  name: String!
+  password: String!
 }
 
 type User {

@@ -8,3 +8,13 @@ export const LoginInput = inputObjectType({
     t.string('password', { required: true })
   },
 })
+
+export const RegisterInput = inputObjectType({
+  name: 'RegisterInput',
+  description: 'Input of register',
+  definition(t) {
+    t.string('name', { required: true })
+    t.string('email', { required: true })
+    t.string('password', { required: true })
+  },
+})
