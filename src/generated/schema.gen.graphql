@@ -3,19 +3,15 @@
 
 
 type Attribute {
-  createdAt: Date
   id: ID
   type: AttributeTypeEnum
-  updatedAt: Date
   value: String
 }
 
 type AttributeType {
-  createdAt: Date
   id: ID
   name: String
   type: AttributeTypeEnum
-  updatedAt: Date
 }
 
 enum AttributeTypeEnum {
@@ -32,10 +28,8 @@ type AuthenticationPayload {
 
 type Category {
   color: String
-  createdAt: Date
   id: ID
   name: String
-  updatedAt: Date
 }
 
 """
@@ -44,13 +38,11 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 type Item {
-  createdAt: Date
   id: ID
   image: String
   name: String
   position: Position3D
   size: Size
-  updatedAt: Date
   value: Int
 }
 
@@ -66,10 +58,8 @@ type Mutation {
 }
 
 type Outgoing {
-  createdAt: Date
   description: String
   id: ID
-  updatedAt: Date
   value: Int
 }
 
@@ -99,10 +89,8 @@ input RegisterInput {
 }
 
 type Role {
-  createdAt: Date
   id: ID
   roleType: RoleTypeEnum
-  updatedAt: Date
 }
 
 enum RoleTypeEnum {
@@ -119,28 +107,22 @@ type Size {
 }
 
 type Storage {
-  createdAt: Date
   id: ID
   name: String
   position: Position2D
   size: Size
-  updatedAt: Date
 }
 
 type User {
-  createdAt: Date
   email: String
   globalRole: RoleTypeEnum
   id: ID
   name: String
   password: String
-  updatedAt: Date
 }
 
 type Warehouse {
-  createdAt: Date
   id: ID
   name: String
   size: Size
-  updatedAt: Date
 }
