@@ -98,6 +98,19 @@ input RegisterInput {
   password: String!
 }
 
+type Role {
+  createdAt: Date
+  id: ID
+  roleType: RoleTypeEnum
+  updatedAt: Date
+}
+
+enum RoleTypeEnum {
+  ADMIN
+  EDITOR
+  USER
+}
+
 """Size of an entity"""
 type Size {
   x: Int
@@ -115,10 +128,13 @@ type Storage {
 }
 
 type User {
+  createdAt: Date
   email: String
+  globalRole: RoleTypeEnum
   id: ID
   name: String
   password: String
+  updatedAt: Date
 }
 
 type Warehouse {

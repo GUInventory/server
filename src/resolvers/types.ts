@@ -36,3 +36,8 @@ export const AttributeTypeEnum = enumType({
   name: 'AttributeTypeEnum',
   members: ['STRING', 'DATE', 'DATETIME', 'NUMBER'],
 })
+
+export const RoleTypeEnum = enumType({
+  name: 'RoleTypeEnum',
+  members: ['ADMIN', 'EDITOR', 'USER'],
+})
