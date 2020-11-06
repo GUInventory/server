@@ -1,5 +1,5 @@
 import { extendType } from '@nexus/schema'
-import { AuthenticationError } from 'apollo-server'
+import { ApolloError } from 'apollo-server'
 import { hash } from 'bcrypt'
 import { comparePasswords, generateToken } from '../../utils/authentication'
 import { LoginInput, RegisterInput } from './authentication.input'
@@ -17,12 +17,12 @@ export const AuthenticationMutation = extendType({
       resolve: async (_, { data: { email, password } }, context) => {
         const user = await context.prisma.user.findOne({ where: { email } })
         if (user === null) {
-          throw new AuthenticationError(invalidEmailOrPassword)
+          throw new ApolloError(invalidEmailOrPassword)
         }
 
         const isValidPassword = await comparePasswords(password, user.password)
         if (!isValidPassword) {
-          throw new AuthenticationError(invalidEmailOrPassword)
+          throw new ApolloError(invalidEmailOrPassword)
         }
 
         return {
@@ -40,7 +40,7 @@ export const AuthenticationMutation = extendType({
       resolve: async (_, { data: { email, name, password } }, context) => {
         const checkUser = await context.prisma.user.findOne({ where: { email } })
         if (checkUser !== null) {
-          throw new AuthenticationError(emailAlreadyInUse)
+          throw new ApolloError(emailAlreadyInUse)
         }
         try {
           const user = await context.prisma.user.create({
@@ -55,7 +55,7 @@ export const AuthenticationMutation = extendType({
             user,
           }
         } catch (error) {
-          throw new AuthenticationError(somethingWentWrong)
+          throw new ApolloError(somethingWentWrong)
         }
       },
     })

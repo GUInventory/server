@@ -1,6 +1,7 @@
 import { ApolloServer } from 'apollo-server-express'
 import { createServer } from 'http'
 import { PrismaClient } from '@prisma/client'
+import { applyMiddleware } from 'graphql-middleware'
 import express from 'express'
 import { schema } from './schema'
 import { shield } from './shield'
@@ -11,7 +12,6 @@ const app = express()
 const server = createServer(app)
 const prisma = new PrismaClient()
 
-import { applyMiddleware } from 'graphql-middleware'
 const apollo = new ApolloServer({
   context: ({ req }) => ({ req, prisma }),
   schema: applyMiddleware(schema, shield),
