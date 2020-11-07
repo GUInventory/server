@@ -1,0 +1,161 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "Warehouse",
+      "field": "users",
+      "type": "User",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Warehouse",
+      "field": "roles",
+      "type": "Role",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Warehouse",
+      "field": "User"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Warehouse",
+      "field": "userId"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Warehouse",
+      "field": "Role"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Warehouse",
+          "field": "storages"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Warehouse",
+          "field": "storages"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"WarehouseToStorage\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Storage",
+      "field": "items",
+      "type": "Item",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Storage",
+          "field": "items"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Storage",
+          "field": "items"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"StorageToItem\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Storage",
+      "field": "Item"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Storage",
+          "field": "warehouse"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"WarehouseToStorage\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Item",
+          "field": "storage"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"StorageToItem\""
+    },
+    {
+      "tag": "CreateField",
+      "model": "Category",
+      "field": "children",
+      "type": "Category",
+      "arity": "List"
+    },
+    {
+      "tag": "CreateDirective",
+      "location": {
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "children"
+        },
+        "directive": "relation"
+      }
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Directive",
+        "path": {
+          "tag": "Field",
+          "model": "Category",
+          "field": "children"
+        },
+        "directive": "relation"
+      },
+      "argument": "",
+      "value": "\"CategoryToCategory\""
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Category",
+      "field": "Category"
+    }
+  ]
+}
