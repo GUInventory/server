@@ -115,6 +115,7 @@ type Storage {
   name: String
   position: Position2D
   size: Size
+  warehouse: Warehouse
 }
 
 type User {
