@@ -79,6 +79,8 @@ type Position3D {
 type Query {
   me: User
   users(world: String): [User]
+  warehouse(id: Int!): Warehouse
+  warehouses: [Warehouse]
 }
 
 """Input of register"""

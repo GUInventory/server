@@ -5,6 +5,7 @@ export const shield = GQLShield(
   {
     Query: {
       me: isAuthenticated,
+      warehouses: isAuthenticated,
     },
     Mutation: {
       login: allow,

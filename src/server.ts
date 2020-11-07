@@ -17,7 +17,7 @@ const apollo = new ApolloServer({
   schema: applyMiddleware(schema, shield),
 })
 
-apollo.applyMiddleware({ app })
+apollo.applyMiddleware({ app, cors: true })
 
 server.listen({ port: PORT }, () => {
   process.stdout.write(`🚀 Server running on :${PORT}\n`)
