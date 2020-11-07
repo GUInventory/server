@@ -27,6 +27,10 @@ export const Storage = objectType({
       },
     })
 
+    t.field('warehouse', {
+      type: 'Warehouse',
+    })
+
     t.field('items', {
       type: 'Item',
       list: [true],

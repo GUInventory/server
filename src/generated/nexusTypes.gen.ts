@@ -165,6 +165,7 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
     position: NexusGenRootTypes['Position2D'] | null; // Position2D
     size: NexusGenRootTypes['Size'] | null; // Size
+    warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
   }
   User: { // field return type
     email: string | null; // String
@@ -249,6 +250,7 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
     position: 'Position2D'
     size: 'Size'
+    warehouse: 'Warehouse'
   }
   User: { // field return type name
     email: 'String'

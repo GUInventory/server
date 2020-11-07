@@ -9,7 +9,10 @@ export const StorageQuery = extendType({
         id: intArg({ required: true }),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.prisma.storage.findOne({ where: { id }, include: { items: true } })
+        return ctx.prisma.storage.findOne({
+          where: { id },
+          include: { items: true, warehouse: true },
+        })
       },
     })
   },
