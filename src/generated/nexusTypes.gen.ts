@@ -145,6 +145,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
+    storage: NexusGenRootTypes['Storage'] | null; // Storage
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
     warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
     warehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
@@ -160,6 +161,7 @@ export interface NexusGenFieldTypes {
   }
   Storage: { // field return type
     id: string | null; // ID
+    items: NexusGenRootTypes['Item'][] | null; // [Item!]
     name: string | null; // String
     position: NexusGenRootTypes['Position2D'] | null; // Position2D
     size: NexusGenRootTypes['Size'] | null; // Size
@@ -227,6 +229,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     me: 'User'
+    storage: 'Storage'
     users: 'User'
     warehouse: 'Warehouse'
     warehouses: 'Warehouse'
@@ -242,6 +245,7 @@ export interface NexusGenFieldTypeNames {
   }
   Storage: { // field return type name
     id: 'ID'
+    items: 'Item'
     name: 'String'
     position: 'Position2D'
     size: 'Size'
@@ -271,6 +275,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    storage: { // args
+      id: number; // Int!
+    }
     users: { // args
       world?: string | null; // String
     }
