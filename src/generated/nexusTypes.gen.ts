@@ -146,6 +146,8 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     me: NexusGenRootTypes['User'] | null; // User
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
+    warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
+    warehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
   }
   Role: { // field return type
     id: string | null; // ID
@@ -225,6 +227,8 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     me: 'User'
     users: 'User'
+    warehouse: 'Warehouse'
+    warehouses: 'Warehouse'
   }
   Role: { // field return type name
     id: 'ID'
@@ -267,6 +271,9 @@ export interface NexusGenArgTypes {
   Query: {
     users: { // args
       world?: string | null; // String
+    }
+    warehouse: { // args
+      id: number; // Int!
     }
   }
 }
