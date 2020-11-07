@@ -127,4 +127,5 @@ type Warehouse {
   id: ID
   name: String
   size: Size
+  storages: [Storage!]
 }

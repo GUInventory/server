@@ -175,6 +175,7 @@ export interface NexusGenFieldTypes {
     id: string | null; // ID
     name: string | null; // String
     size: NexusGenRootTypes['Size'] | null; // Size
+    storages: NexusGenRootTypes['Storage'][] | null; // [Storage!]
   }
 }
 
@@ -256,6 +257,7 @@ export interface NexusGenFieldTypeNames {
     id: 'ID'
     name: 'String'
     size: 'Size'
+    storages: 'Storage'
   }
 }
 
