@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -53,11 +53,12 @@ model Warehouse {
   sizeX     Int
   sizeY     Int
   sizeZ     Int
-  storages  Storage[] @relation("WarehouseToStorage")
+  storages  Storage[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  users     User[]
-  roles     Role[]
+  User      User?     @relation(fields: [userId], references: [id])
+  userId    Int?
+  Role      Role[]
 }
 
 model Storage {
@@ -69,11 +70,11 @@ model Storage {
   sizeX     Int
   sizeY     Int
   sizeZ     Int
-  warehouse Warehouse @relation("WarehouseToStorage", fields: [warehouseId], references: [id])
+  warehouse Warehouse @relation(fields: [warehouseId], references: [id])
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  items       Item[]   @relation("StorageToItem")
+  Item        Item[]
   warehouseId Int
 }
 
@@ -81,7 +82,7 @@ model Item {
   id         Int         @id @default(autoincrement())
   name       String
   image      String
-  storage    Storage?    @relation("StorageToItem", fields: [storageId], references: [id])
+  storage    Storage?    @relation(fields: [storageId], references: [id])
   value      Int
   outgoings  Outgoing[]
   attributes Attribute[]
@@ -116,7 +117,7 @@ model Category {
   attributes AttributeType[]
   createdAt  DateTime        @default(now())
   updatedAt  DateTime        @updatedAt
-  children   Category[]      @relation("CategoryToCategory")
+  Category   Category[]      @relation("CategoryToCategory")
   categoryId Int?
 }
 

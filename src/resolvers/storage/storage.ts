@@ -27,6 +27,12 @@ export const Storage = objectType({
       },
     })
 
+    t.field('items', {
+      type: 'Item',
+      list: [true],
+      nullable: true,
+    })
+
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },

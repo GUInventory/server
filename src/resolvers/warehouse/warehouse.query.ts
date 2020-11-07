@@ -16,7 +16,7 @@ export const WarehouseQuery = extendType({
         id: intArg({ required: true }),
       },
       resolve: (_, { id }, ctx) => {
-        return ctx.prisma.warehouse.findOne({ where: { id } })
+        return ctx.prisma.warehouse.findOne({ where: { id }, include: { storages: true } })
       },
     })
   },

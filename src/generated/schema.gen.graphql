@@ -78,6 +78,7 @@ type Position3D {
 
 type Query {
   me: User
+  storage(id: Int!): Storage
   users(world: String): [User]
   warehouse(id: Int!): Warehouse
   warehouses: [Warehouse]
@@ -110,6 +111,7 @@ type Size {
 
 type Storage {
   id: ID
+  items: [Item!]
   name: String
   position: Position2D
   size: Size
@@ -127,4 +129,5 @@ type Warehouse {
   id: ID
   name: String
   size: Size
+  storages: [Storage!]
 }
