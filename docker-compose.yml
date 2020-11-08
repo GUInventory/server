@@ -11,24 +11,21 @@ services:
       - '${STUDIO_PORT}:5555'
     environment:
       NODE_ENV: ${NODE_ENV}
-      MYSQL_URL: ${MYSQL_URL}
+      DATABASE_URL: ${DATABASE_URL}
       APP_SECRET: ${APP_SECRET}
     networks:
       - server-network
   mysql:
-    image: mysql
+    image: mysql:5.7
     restart: always
     environment:
       MYSQL_USER: prisma
       MYSQL_PASSWORD: prisma
-      MYSQL_DB: prisma
+      MYSQL_ROOT_PASSWORD: prisma
+      MYSQL_DATABASE: prisma
     networks:
       server-network:
         aliases:
           - mysql.db
-    volumes:
-      - mysql:/var/lib/mysql/data
-volumes:
-  mysql:
 networks:
   server-network:
