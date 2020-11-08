@@ -27,5 +27,9 @@ services:
       server-network:
         aliases:
           - mysql.db
+    volumes:
+      - db_data:/var/lib/mysql
+volumes: 
+  db_data:
 networks:
   server-network:

@@ -10,5 +10,6 @@ COPY . /usr/src/server
 
 RUN npm install -g concurrently --unsafe-perm
 RUN yarn install
+RUN yarn generate
 
 CMD yarn run migrate:up && concurrently "yarn run dev" "yarn run prisma studio"
