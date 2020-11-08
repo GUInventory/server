@@ -1,0 +1,35 @@
+version: '3'
+services:
+  server:
+    build: .
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    ports:
+      - '${SERVER_PORT}:4000'
+      - '${STUDIO_PORT}:5555'
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DATABASE_URL: ${DATABASE_URL}
+      APP_SECRET: ${APP_SECRET}
+    networks:
+      - server-network
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_USER: prisma
+      MYSQL_PASSWORD: prisma
+      MYSQL_ROOT_PASSWORD: prisma
+      MYSQL_DATABASE: prisma
+    networks:
+      server-network:
+        aliases:
+          - mysql.db
+    volumes:
+      - db_data:/var/lib/mysql
+volumes: 
+  db_data:
+networks:
+  server-network:
