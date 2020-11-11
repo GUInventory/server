@@ -30,6 +30,18 @@ export interface NexusGenInputs {
   ConnectRelation: { // input type
     id: string; // ID!
   }
+  CreateItemInput: { // input type
+    image: string; // String!
+    name: string; // String!
+    positionX?: number | null; // Int
+    positionY?: number | null; // Int
+    positionZ?: number | null; // Int
+    sizeX: number; // Int!
+    sizeY: number; // Int!
+    sizeZ: number; // Int!
+    subject: NexusGenInputs['ConnectRelation']; // ConnectRelation!
+    value: number; // Int!
+  }
   LoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -89,6 +101,7 @@ export interface NexusGenRootTypes {
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
   ConnectRelation: NexusGenInputs['ConnectRelation'];
+  CreateItemInput: NexusGenInputs['CreateItemInput'];
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
   AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
@@ -139,6 +152,8 @@ export interface NexusGenFieldTypes {
     value: number | null; // Int
   }
   Mutation: { // field return type
+    createItem: NexusGenRootTypes['Item'] | null; // Item
+    deleteItem: NexusGenRootTypes['Item'] | null; // Item
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
   }
@@ -241,6 +256,8 @@ export interface NexusGenFieldTypeNames {
     value: 'Int'
   }
   Mutation: { // field return type name
+    createItem: 'Item'
+    deleteItem: 'Item'
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
   }
@@ -307,6 +324,12 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createItem: { // args
+      data: NexusGenInputs['CreateItemInput']; // CreateItemInput!
+    }
+    deleteItem: { // args
+      id: number; // Int!
+    }
     login: { // args
       data: NexusGenInputs['LoginInput']; // LoginInput!
     }
@@ -337,7 +360,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ConnectRelation" | "LoginInput" | "RegisterInput";
+export type NexusGenInputNames = "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 
