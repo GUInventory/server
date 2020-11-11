@@ -7,6 +7,12 @@ export const Outgoing = objectType({
     t.string('description')
     t.int('value')
 
+    t.field('item', {
+      type: 'Item',
+      list: [false],
+      nullable: false,
+    })
+
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },
