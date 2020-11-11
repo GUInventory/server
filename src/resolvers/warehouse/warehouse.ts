@@ -23,6 +23,18 @@ export const Warehouse = objectType({
       nullable: true,
     })
 
+    t.field('users', {
+      type: 'User',
+      list: [true],
+      nullable: true,
+    })
+
+    t.field('roles', {
+      type: 'Role',
+      list: [true],
+      nullable: true,
+    })
+
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },

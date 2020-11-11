@@ -9,6 +9,17 @@ export const Role = objectType({
       resolve: async ({ roleType }) => roleType,
     })
 
+    t.field('warehouse', {
+      type: 'Warehouse',
+      list: [false],
+      nullable: false,
+    })
+
+    t.field('user', {
+      type: 'User',
+      list: [false],
+      nullable: false,
+    })
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },

@@ -11,6 +11,12 @@ export const AttributeType = objectType({
       resolve: async ({ type }) => type,
     })
 
+    t.field('category', {
+      type: 'Category',
+      list: [false],
+      nullable: false,
+    })
+
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },

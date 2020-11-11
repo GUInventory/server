@@ -30,6 +30,30 @@ export const Item = objectType({
       },
     })
 
+    t.field('storage', {
+      type: 'Storage',
+      list: [false],
+      nullable: false,
+    })
+
+    t.field('outgoings', {
+      type: 'Outgoing',
+      list: [true],
+      nullable: true,
+    })
+
+    t.field('attributes', {
+      type: 'Attribute',
+      list: [true],
+      nullable: true,
+    })
+
+    t.field('categories', {
+      type: 'Category',
+      list: [true],
+      nullable: true,
+    })
+
     // t.dateTime('createdAt')
     // t.dateTime('updatedAt')
   },
