@@ -4,11 +4,13 @@
 
 type Attribute {
   id: ID
+  item: [Item]!
   type: AttributeTypeEnum
   value: String
 }
 
 type AttributeType {
+  category: [Category]!
   id: ID
   name: String
   type: AttributeTypeEnum
@@ -27,9 +29,17 @@ type AuthenticationPayload {
 }
 
 type Category {
+  children: [Category!]
   color: String
   id: ID
+  items: [Item!]
   name: String
+  parent: [Category]
+}
+
+"""Connect a related entity"""
+input ConnectRelation {
+  id: ID!
 }
 
 """
@@ -38,11 +48,15 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 scalar Date
 
 type Item {
+  attributes: [Attribute!]
+  categories: [Category!]
   id: ID
   image: String
   name: String
+  outgoings: [Outgoing!]
   position: Position3D
   size: Size
+  storage: [Storage]!
   value: Int
 }
 
@@ -60,6 +74,7 @@ type Mutation {
 type Outgoing {
   description: String
   id: ID
+  item: [Item]!
   value: Int
 }
 
@@ -77,6 +92,7 @@ type Position3D {
 }
 
 type Query {
+  item(id: Int!): Item
   me: User
   storage(id: Int!): Storage
   users(world: String): [User]
@@ -94,6 +110,8 @@ input RegisterInput {
 type Role {
   id: ID
   roleType: RoleTypeEnum
+  user: [User]!
+  warehouse: [Warehouse]!
 }
 
 enum RoleTypeEnum {
@@ -115,7 +133,7 @@ type Storage {
   name: String
   position: Position2D
   size: Size
-  warehouse: Warehouse
+  warehouse: [Warehouse!]!
 }
 
 type User {
@@ -124,11 +142,15 @@ type User {
   id: ID
   name: String
   password: String
+  roles: [Role!]
+  warehouses: [Warehouse!]
 }
 
 type Warehouse {
   id: ID
   name: String
+  roles: [Role!]
   size: Size
   storages: [Storage!]
+  users: [User!]
 }
