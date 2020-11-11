@@ -37,6 +37,11 @@ type Category {
   parent: [Category]
 }
 
+input ConnectOrDisconnectRelation {
+  connect: ConnectRelation
+  disconnect: ConnectRelation
+}
+
 """Connect a related entity"""
 input ConnectRelation {
   id: ID!
@@ -163,6 +168,7 @@ input UpdateItemInput {
   sizeX: Int
   sizeY: Int
   sizeZ: Int
+  storage: ConnectOrDisconnectRelation
   value: Int
 }
 

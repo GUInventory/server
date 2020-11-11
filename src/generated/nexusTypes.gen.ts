@@ -27,6 +27,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ConnectOrDisconnectRelation: { // input type
+    connect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
+    disconnect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
+  }
   ConnectRelation: { // input type
     id: string; // ID!
   }
@@ -60,6 +64,7 @@ export interface NexusGenInputs {
     sizeX?: number | null; // Int
     sizeY?: number | null; // Int
     sizeZ?: number | null; // Int
+    storage?: NexusGenInputs['ConnectOrDisconnectRelation'] | null; // ConnectOrDisconnectRelation
     value?: number | null; // Int
   }
 }
@@ -111,6 +116,7 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  ConnectOrDisconnectRelation: NexusGenInputs['ConnectOrDisconnectRelation'];
   ConnectRelation: NexusGenInputs['ConnectRelation'];
   CreateItemInput: NexusGenInputs['CreateItemInput'];
   LoginInput: NexusGenInputs['LoginInput'];
@@ -378,7 +384,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput";
+export type NexusGenInputNames = "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 

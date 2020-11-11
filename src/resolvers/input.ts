@@ -7,3 +7,11 @@ export const CreateItemInput = inputObjectType({
     t.id('id', { required: true })
   },
 })
+
+export const ConnectOrDisconnectRelation = inputObjectType({
+  name: 'ConnectOrDisconnectRelation',
+  definition(t) {
+    t.field('connect', { type: 'ConnectRelation' })
+    t.field('disconnect', { type: 'ConnectRelation' })
+  },
+})
