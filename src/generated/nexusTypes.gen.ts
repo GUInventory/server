@@ -32,7 +32,7 @@ export interface NexusGenInputs {
     disconnect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
   }
   ConnectRelation: { // input type
-    id: string; // ID!
+    id: number; // Int!
   }
   CreateItemInput: { // input type
     image: string; // String!

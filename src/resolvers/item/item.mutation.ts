@@ -7,8 +7,13 @@ export const ItemMutation = extendType({
     t.field('createItem', {
       type: 'Item',
       args: { data: CreateItemInput.asArg({ required: true }) },
-      resolve: (_, { data }, ctx) => {
-        return ctx.prisma.item.create(data)
+      resolve: (_, { data: { storage, ...rest } }, ctx) => {
+        return ctx.prisma.item.create({
+          data: {
+            storage: { connect: storage },
+            ...rest,
+          },
+        })
       },
     })
 

@@ -44,7 +44,7 @@ input ConnectOrDisconnectRelation {
 
 """Connect a related entity"""
 input ConnectRelation {
-  id: ID!
+  id: Int!
 }
 
 """Input of create item"""
