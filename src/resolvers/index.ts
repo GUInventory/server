@@ -8,4 +8,6 @@ export * from './role'
 export * from './storage'
 export * from './user'
 export * from './warehouse'
+
+export * from './input'
 export * from './types'
