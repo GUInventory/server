@@ -13,6 +13,22 @@ export const CreateItemInput = inputObjectType({
     t.int('positionX', { required: false })
     t.int('positionY', { required: false })
     t.int('positionZ', { required: false })
-    t.field('subject', { type: 'ConnectRelation', required: true })
+    t.field('storage', { type: 'ConnectRelation', required: true })
+  },
+})
+
+export const UpdateItemInput = inputObjectType({
+  name: 'UpdateItemInput',
+  description: 'Input of update an item',
+  definition(t) {
+    t.string('name')
+    t.string('image')
+    t.int('value')
+    t.int('sizeX')
+    t.int('sizeY')
+    t.int('sizeZ')
+    t.int('positionX')
+    t.int('positionY')
+    t.int('positionZ')
   },
 })

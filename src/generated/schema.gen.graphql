@@ -52,7 +52,7 @@ input CreateItemInput {
   sizeX: Int!
   sizeY: Int!
   sizeZ: Int!
-  subject: ConnectRelation!
+  storage: ConnectRelation!
   value: Int!
 }
 
@@ -85,6 +85,7 @@ type Mutation {
   deleteItem(id: Int!): Item
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
+  updateItem(data: UpdateItemInput!, id: Int!): Item
 }
 
 type Outgoing {
@@ -150,6 +151,19 @@ type Storage {
   position: Position2D
   size: Size
   warehouse: [Warehouse!]!
+}
+
+"""Input of update an item"""
+input UpdateItemInput {
+  image: String
+  name: String
+  positionX: Int
+  positionY: Int
+  positionZ: Int
+  sizeX: Int
+  sizeY: Int
+  sizeZ: Int
+  value: Int
 }
 
 type User {

@@ -1,5 +1,5 @@
 import { extendType, intArg } from '@nexus/schema'
-import { CreateItemInput } from './item.input'
+import { CreateItemInput, UpdateItemInput } from './item.input'
 
 export const ItemMutation = extendType({
   type: 'Mutation',
@@ -9,6 +9,20 @@ export const ItemMutation = extendType({
       args: { data: CreateItemInput.asArg({ required: true }) },
       resolve: (_, { data }, ctx) => {
         return ctx.prisma.item.create(data)
+      },
+    })
+
+    t.field('updateItem', {
+      type: 'Item',
+      args: {
+        id: intArg({ required: true }),
+        data: UpdateItemInput.asArg({ required: true }),
+      },
+      resolve: (_, { id, data }, ctx) => {
+        return ctx.prisma.item.update({
+          where: { id },
+          data,
+        })
       },
     })
 

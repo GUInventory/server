@@ -39,7 +39,7 @@ export interface NexusGenInputs {
     sizeX: number; // Int!
     sizeY: number; // Int!
     sizeZ: number; // Int!
-    subject: NexusGenInputs['ConnectRelation']; // ConnectRelation!
+    storage: NexusGenInputs['ConnectRelation']; // ConnectRelation!
     value: number; // Int!
   }
   LoginInput: { // input type
@@ -50,6 +50,17 @@ export interface NexusGenInputs {
     email: string; // String!
     name: string; // String!
     password: string; // String!
+  }
+  UpdateItemInput: { // input type
+    image?: string | null; // String
+    name?: string | null; // String
+    positionX?: number | null; // Int
+    positionY?: number | null; // Int
+    positionZ?: number | null; // Int
+    sizeX?: number | null; // Int
+    sizeY?: number | null; // Int
+    sizeZ?: number | null; // Int
+    value?: number | null; // Int
   }
 }
 
@@ -104,6 +115,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CreateItemInput: NexusGenInputs['CreateItemInput'];
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
+  UpdateItemInput: NexusGenInputs['UpdateItemInput'];
   AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
   RoleTypeEnum: NexusGenEnums['RoleTypeEnum'];
   String: NexusGenScalars['String'];
@@ -156,6 +168,7 @@ export interface NexusGenFieldTypes {
     deleteItem: NexusGenRootTypes['Item'] | null; // Item
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
+    updateItem: NexusGenRootTypes['Item'] | null; // Item
   }
   Outgoing: { // field return type
     description: string | null; // String
@@ -260,6 +273,7 @@ export interface NexusGenFieldTypeNames {
     deleteItem: 'Item'
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
+    updateItem: 'Item'
   }
   Outgoing: { // field return type name
     description: 'String'
@@ -336,6 +350,10 @@ export interface NexusGenArgTypes {
     register: { // args
       data: NexusGenInputs['RegisterInput']; // RegisterInput!
     }
+    updateItem: { // args
+      data: NexusGenInputs['UpdateItemInput']; // UpdateItemInput!
+      id: number; // Int!
+    }
   }
   Query: {
     item: { // args
@@ -360,7 +378,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput";
+export type NexusGenInputNames = "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 
