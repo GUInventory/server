@@ -46,6 +46,12 @@ export interface NexusGenInputs {
     storage: NexusGenInputs['ConnectRelation']; // ConnectRelation!
     value: number; // Int!
   }
+  CreateWarehouseInput: { // input type
+    name: string; // String!
+    sizeX: number; // Int!
+    sizeY: number; // Int!
+    sizeZ: number; // Int!
+  }
   LoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -66,6 +72,12 @@ export interface NexusGenInputs {
     sizeZ?: number | null; // Int
     storage?: NexusGenInputs['ConnectOrDisconnectRelation'] | null; // ConnectOrDisconnectRelation
     value?: number | null; // Int
+  }
+  UpdateWarehouseInput: { // input type
+    name?: string | null; // String
+    sizeX?: number | null; // Int
+    sizeY?: number | null; // Int
+    sizeZ?: number | null; // Int
   }
 }
 
@@ -119,9 +131,11 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ConnectOrDisconnectRelation: NexusGenInputs['ConnectOrDisconnectRelation'];
   ConnectRelation: NexusGenInputs['ConnectRelation'];
   CreateItemInput: NexusGenInputs['CreateItemInput'];
+  CreateWarehouseInput: NexusGenInputs['CreateWarehouseInput'];
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
   UpdateItemInput: NexusGenInputs['UpdateItemInput'];
+  UpdateWarehouseInput: NexusGenInputs['UpdateWarehouseInput'];
   AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
   RoleTypeEnum: NexusGenEnums['RoleTypeEnum'];
   String: NexusGenScalars['String'];
@@ -171,10 +185,13 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createItem: NexusGenRootTypes['Item'] | null; // Item
+    createWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
     deleteItem: NexusGenRootTypes['Item'] | null; // Item
+    deleteWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     updateItem: NexusGenRootTypes['Item'] | null; // Item
+    updateWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
   }
   Outgoing: { // field return type
     description: string | null; // String
@@ -276,10 +293,13 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createItem: 'Item'
+    createWarehouse: 'Warehouse'
     deleteItem: 'Item'
+    deleteWarehouse: 'Warehouse'
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
     updateItem: 'Item'
+    updateWarehouse: 'Warehouse'
   }
   Outgoing: { // field return type name
     description: 'String'
@@ -347,7 +367,13 @@ export interface NexusGenArgTypes {
     createItem: { // args
       data: NexusGenInputs['CreateItemInput']; // CreateItemInput!
     }
+    createWarehouse: { // args
+      data: NexusGenInputs['CreateWarehouseInput']; // CreateWarehouseInput!
+    }
     deleteItem: { // args
+      id: number; // Int!
+    }
+    deleteWarehouse: { // args
       id: number; // Int!
     }
     login: { // args
@@ -358,6 +384,10 @@ export interface NexusGenArgTypes {
     }
     updateItem: { // args
       data: NexusGenInputs['UpdateItemInput']; // UpdateItemInput!
+      id: number; // Int!
+    }
+    updateWarehouse: { // args
+      data: NexusGenInputs['UpdateWarehouseInput']; // UpdateWarehouseInput!
       id: number; // Int!
     }
   }
@@ -384,7 +414,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput";
+export type NexusGenInputNames = "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateWarehouseInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput" | "UpdateWarehouseInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 

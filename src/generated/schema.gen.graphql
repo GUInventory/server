@@ -61,6 +61,14 @@ input CreateItemInput {
   value: Int!
 }
 
+"""Input of create warehouse"""
+input CreateWarehouseInput {
+  name: String!
+  sizeX: Int!
+  sizeY: Int!
+  sizeZ: Int!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
@@ -87,10 +95,13 @@ input LoginInput {
 
 type Mutation {
   createItem(data: CreateItemInput!): Item
+  createWarehouse(data: CreateWarehouseInput!): Warehouse
   deleteItem(id: Int!): Item
+  deleteWarehouse(id: Int!): Warehouse
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
   updateItem(data: UpdateItemInput!, id: Int!): Item
+  updateWarehouse(data: UpdateWarehouseInput!, id: Int!): Warehouse
 }
 
 type Outgoing {
@@ -170,6 +181,14 @@ input UpdateItemInput {
   sizeZ: Int
   storage: ConnectOrDisconnectRelation
   value: Int
+}
+
+"""Input of update an warehouse"""
+input UpdateWarehouseInput {
+  name: String
+  sizeX: Int
+  sizeY: Int
+  sizeZ: Int
 }
 
 type User {
