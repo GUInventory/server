@@ -61,6 +61,18 @@ input CreateItemInput {
   value: Int!
 }
 
+"""Input of create storage"""
+input CreateStorageInput {
+  name: String!
+  positionX: Int!
+  positionY: Int!
+  positionZ: Int!
+  sizeX: Int!
+  sizeY: Int!
+  sizeZ: Int!
+  warehouse: ConnectRelation!
+}
+
 """Input of create warehouse"""
 input CreateWarehouseInput {
   name: String!
@@ -95,12 +107,15 @@ input LoginInput {
 
 type Mutation {
   createItem(data: CreateItemInput!): Item
+  createStorage(data: CreateStorageInput!): Storage
   createWarehouse(data: CreateWarehouseInput!): Warehouse
   deleteItem(id: Int!): Item
+  deleteStorage(id: Int!): Storage
   deleteWarehouse(id: Int!): Warehouse
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
   updateItem(data: UpdateItemInput!, id: Int!): Item
+  updateStorage(data: UpdateStorageInput!, id: Int!): Storage
   updateWarehouse(data: UpdateWarehouseInput!, id: Int!): Warehouse
 }
 
@@ -181,6 +196,18 @@ input UpdateItemInput {
   sizeZ: Int
   storage: ConnectOrDisconnectRelation
   value: Int
+}
+
+"""Input of update an storage"""
+input UpdateStorageInput {
+  name: String
+  positionX: Int
+  positionY: Int
+  positionZ: Int
+  sizeX: Int
+  sizeY: Int
+  sizeZ: Int
+  warehouse: ConnectOrDisconnectRelation
 }
 
 """Input of update an warehouse"""
