@@ -37,6 +37,12 @@ type Category {
   parent: [Category]
 }
 
+"""Input of pasword changing"""
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
 input ConnectOrDisconnectRelation {
   connect: ConnectRelation
   disconnect: ConnectRelation
@@ -106,6 +112,7 @@ input LoginInput {
 }
 
 type Mutation {
+  changePassword(data: ChangePasswordInput!): User
   createItem(data: CreateItemInput!): Item
   createStorage(data: CreateStorageInput!): Storage
   createWarehouse(data: CreateWarehouseInput!): Warehouse

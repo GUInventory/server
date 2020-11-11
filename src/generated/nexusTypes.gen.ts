@@ -27,6 +27,10 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ChangePasswordInput: { // input type
+    newPassword: string; // String!
+    oldPassword: string; // String!
+  }
   ConnectOrDisconnectRelation: { // input type
     connect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
     disconnect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
@@ -148,6 +152,7 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  ChangePasswordInput: NexusGenInputs['ChangePasswordInput'];
   ConnectOrDisconnectRelation: NexusGenInputs['ConnectOrDisconnectRelation'];
   ConnectRelation: NexusGenInputs['ConnectRelation'];
   CreateItemInput: NexusGenInputs['CreateItemInput'];
@@ -206,6 +211,7 @@ export interface NexusGenFieldTypes {
     value: number | null; // Int
   }
   Mutation: { // field return type
+    changePassword: NexusGenRootTypes['User'] | null; // User
     createItem: NexusGenRootTypes['Item'] | null; // Item
     createStorage: NexusGenRootTypes['Storage'] | null; // Storage
     createWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
@@ -317,6 +323,7 @@ export interface NexusGenFieldTypeNames {
     value: 'Int'
   }
   Mutation: { // field return type name
+    changePassword: 'User'
     createItem: 'Item'
     createStorage: 'Storage'
     createWarehouse: 'Warehouse'
@@ -392,6 +399,9 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    changePassword: { // args
+      data: NexusGenInputs['ChangePasswordInput']; // ChangePasswordInput!
+    }
     createItem: { // args
       data: NexusGenInputs['CreateItemInput']; // CreateItemInput!
     }
@@ -452,7 +462,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateStorageInput" | "CreateWarehouseInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput" | "UpdateStorageInput" | "UpdateWarehouseInput";
+export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateStorageInput" | "CreateWarehouseInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput" | "UpdateStorageInput" | "UpdateWarehouseInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 
