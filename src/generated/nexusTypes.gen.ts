@@ -147,6 +147,11 @@ export interface NexusGenRootTypes {
     z?: number | null; // Int
   }
   Storage: PrismaClient.Storage;
+  Subscription: { // root type
+    itemCreated?: NexusGenRootTypes['Item'] | null; // Item
+    itemDeleted?: NexusGenRootTypes['Item'] | null; // Item
+    itemUpdated?: NexusGenRootTypes['Item'] | null; // Item
+  }
   User: PrismaClient.User;
   Warehouse: PrismaClient.Warehouse;
 }
@@ -266,6 +271,11 @@ export interface NexusGenFieldTypes {
     size: NexusGenRootTypes['Size'] | null; // Size
     warehouse: NexusGenRootTypes['Warehouse'][]; // [Warehouse!]!
   }
+  Subscription: { // field return type
+    itemCreated: NexusGenRootTypes['Item'] | null; // Item
+    itemDeleted: NexusGenRootTypes['Item'] | null; // Item
+    itemUpdated: NexusGenRootTypes['Item'] | null; // Item
+  }
   User: { // field return type
     email: string | null; // String
     globalRole: NexusGenEnums['RoleTypeEnum'] | null; // RoleTypeEnum
@@ -378,6 +388,11 @@ export interface NexusGenFieldTypeNames {
     size: 'Size'
     warehouse: 'Warehouse'
   }
+  Subscription: { // field return type name
+    itemCreated: 'Item'
+    itemDeleted: 'Item'
+    itemUpdated: 'Item'
+  }
   User: { // field return type name
     email: 'String'
     globalRole: 'RoleTypeEnum'
@@ -460,7 +475,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "User" | "Warehouse";
+export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateStorageInput" | "CreateWarehouseInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput" | "UpdateStorageInput" | "UpdateWarehouseInput";
 

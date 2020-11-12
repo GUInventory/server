@@ -1,6 +1,6 @@
 import { inputObjectType } from '@nexus/schema'
 
-export const CreateItemInput = inputObjectType({
+export const ConnectRelation = inputObjectType({
   name: 'ConnectRelation',
   description: 'Connect a related entity',
   definition(t) {

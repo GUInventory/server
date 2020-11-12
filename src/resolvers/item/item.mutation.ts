@@ -1,5 +1,7 @@
 import { extendType, intArg } from '@nexus/schema'
 import { CreateItemInput, UpdateItemInput } from './item.input'
+import { Context } from '../../types'
+import { publishItemEvent } from './item.subscription'
 
 export const ItemMutation = extendType({
   type: 'Mutation',
@@ -7,13 +9,15 @@ export const ItemMutation = extendType({
     t.field('createItem', {
       type: 'Item',
       args: { data: CreateItemInput.asArg({ required: true }) },
-      resolve: (_, { data: { storage, ...rest } }, ctx) => {
-        return ctx.prisma.item.create({
+      resolve: async (_, { data: { storage, ...rest } }, ctx: Context) => {
+        const item = await ctx.prisma.item.create({
           data: {
             storage: { connect: storage },
             ...rest,
           },
         })
+        await publishItemEvent('itemCreated', item, ctx)
+        return item
       },
     })
 
@@ -23,11 +27,13 @@ export const ItemMutation = extendType({
         id: intArg({ required: true }),
         data: UpdateItemInput.asArg({ required: true }),
       },
-      resolve: (_, { id, data }, ctx) => {
-        return ctx.prisma.item.update({
+      resolve: async (_, { id, data }, ctx: Context) => {
+        const item = await ctx.prisma.item.update({
           where: { id },
           data,
         })
+        await publishItemEvent('itemUpdated', item, ctx)
+        return item
       },
     })
 
@@ -36,10 +42,12 @@ export const ItemMutation = extendType({
       args: {
         id: intArg({ required: true }),
       },
-      resolve: (_, { id }, ctx) => {
-        return ctx.prisma.item.delete({
+      resolve: async (_, { id }, ctx: Context) => {
+        const item = await ctx.prisma.item.delete({
           where: { id },
         })
+        await publishItemEvent('itemDeleted', item, ctx)
+        return item
       },
     })
   },
