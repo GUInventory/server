@@ -18,7 +18,7 @@ const apollo = new ApolloServer({
   context: ({ req }) => ({ req, prisma, pubsub }),
   subscriptions: {
     onConnect: async () => {
-      console.log('cconnect')
+      console.log('New subscription')
     },
   },
   schema: applyMiddleware(schema, shield),

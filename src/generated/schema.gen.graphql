@@ -185,6 +185,8 @@ type Storage {
 }
 
 type Subscription {
+  itemCreated: Item
+  itemDeleted: Item
   itemUpdated: Item
 }
 

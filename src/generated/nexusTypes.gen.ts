@@ -144,6 +144,8 @@ export interface NexusGenRootTypes {
   }
   Storage: PrismaClient.Storage;
   Subscription: { // root type
+    itemCreated?: NexusGenRootTypes['Item'] | null; // Item
+    itemDeleted?: NexusGenRootTypes['Item'] | null; // Item
     itemUpdated?: NexusGenRootTypes['Item'] | null; // Item
   }
   User: PrismaClient.User;
@@ -264,6 +266,8 @@ export interface NexusGenFieldTypes {
     warehouse: NexusGenRootTypes['Warehouse'][]; // [Warehouse!]!
   }
   Subscription: { // field return type
+    itemCreated: NexusGenRootTypes['Item'] | null; // Item
+    itemDeleted: NexusGenRootTypes['Item'] | null; // Item
     itemUpdated: NexusGenRootTypes['Item'] | null; // Item
   }
   User: { // field return type
@@ -378,6 +382,8 @@ export interface NexusGenFieldTypeNames {
     warehouse: 'Warehouse'
   }
   Subscription: { // field return type name
+    itemCreated: 'Item'
+    itemDeleted: 'Item'
     itemUpdated: 'Item'
   }
   User: { // field return type name
