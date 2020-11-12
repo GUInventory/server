@@ -1,5 +1,6 @@
 import { extendType, intArg } from '@nexus/schema'
 import { CreateItemInput, UpdateItemInput } from './item.input'
+import { Context } from '../../types'
 
 export const ItemMutation = extendType({
   type: 'Mutation',
@@ -23,7 +24,8 @@ export const ItemMutation = extendType({
         id: intArg({ required: true }),
         data: UpdateItemInput.asArg({ required: true }),
       },
-      resolve: (_, { id, data }, ctx) => {
+      resolve: async (_, { id, data }, ctx: Context) => {
+        await ctx.pubsub.publish('itemUpdated', { payload: { data } })
         return ctx.prisma.item.update({
           where: { id },
           data,

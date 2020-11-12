@@ -184,6 +184,10 @@ type Storage {
   warehouse: [Warehouse!]!
 }
 
+type Subscription {
+  itemUpdated: Item
+}
+
 """Input of update an item"""
 input UpdateItemInput {
   image: String
