@@ -66,6 +66,9 @@ export interface NexusGenInputs {
     sizeY: number; // Int!
     sizeZ: number; // Int!
   }
+  ForgotPasswordInput: { // input type
+    email: string; // String!
+  }
   LoginInput: { // input type
     email: string; // String!
     password: string; // String!
@@ -74,6 +77,10 @@ export interface NexusGenInputs {
     email: string; // String!
     name: string; // String!
     password: string; // String!
+  }
+  ResetPasswordInput: { // input type
+    password: string; // String!
+    token: string; // String!
   }
   UpdateItemInput: { // input type
     image?: string | null; // String
@@ -140,6 +147,7 @@ export interface NexusGenRootTypes {
     z?: number | null; // Int
   }
   Query: {};
+  ResetPasswordToken: PrismaClient.ResetPasswordToken;
   Role: PrismaClient.Role;
   Size: { // root type
     x?: number | null; // Int
@@ -163,8 +171,10 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   CreateItemInput: NexusGenInputs['CreateItemInput'];
   CreateStorageInput: NexusGenInputs['CreateStorageInput'];
   CreateWarehouseInput: NexusGenInputs['CreateWarehouseInput'];
+  ForgotPasswordInput: NexusGenInputs['ForgotPasswordInput'];
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
+  ResetPasswordInput: NexusGenInputs['ResetPasswordInput'];
   UpdateItemInput: NexusGenInputs['UpdateItemInput'];
   UpdateStorageInput: NexusGenInputs['UpdateStorageInput'];
   UpdateWarehouseInput: NexusGenInputs['UpdateWarehouseInput'];
@@ -223,8 +233,10 @@ export interface NexusGenFieldTypes {
     deleteItem: NexusGenRootTypes['Item'] | null; // Item
     deleteStorage: NexusGenRootTypes['Storage'] | null; // Storage
     deleteWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
+    forgotPassword: boolean | null; // Boolean
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
+    resetPassword: boolean | null; // Boolean
     updateItem: NexusGenRootTypes['Item'] | null; // Item
     updateStorage: NexusGenRootTypes['Storage'] | null; // Storage
     updateWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
@@ -251,6 +263,10 @@ export interface NexusGenFieldTypes {
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
     warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
     warehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
+  }
+  ResetPasswordToken: { // field return type
+    email: string | null; // ID
+    token: string | null; // String
   }
   Role: { // field return type
     id: string | null; // ID
@@ -340,8 +356,10 @@ export interface NexusGenFieldTypeNames {
     deleteItem: 'Item'
     deleteStorage: 'Storage'
     deleteWarehouse: 'Warehouse'
+    forgotPassword: 'Boolean'
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
+    resetPassword: 'Boolean'
     updateItem: 'Item'
     updateStorage: 'Storage'
     updateWarehouse: 'Warehouse'
@@ -368,6 +386,10 @@ export interface NexusGenFieldTypeNames {
     users: 'User'
     warehouse: 'Warehouse'
     warehouses: 'Warehouse'
+  }
+  ResetPasswordToken: { // field return type name
+    email: 'ID'
+    token: 'String'
   }
   Role: { // field return type name
     id: 'ID'
@@ -435,11 +457,17 @@ export interface NexusGenArgTypes {
     deleteWarehouse: { // args
       id: number; // Int!
     }
+    forgotPassword: { // args
+      data: NexusGenInputs['ForgotPasswordInput']; // ForgotPasswordInput!
+    }
     login: { // args
       data: NexusGenInputs['LoginInput']; // LoginInput!
     }
     register: { // args
       data: NexusGenInputs['RegisterInput']; // RegisterInput!
+    }
+    resetPassword: { // args
+      data: NexusGenInputs['ResetPasswordInput']; // ResetPasswordInput!
     }
     updateItem: { // args
       data: NexusGenInputs['UpdateItemInput']; // UpdateItemInput!
@@ -475,9 +503,9 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
+export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "ResetPasswordToken" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateStorageInput" | "CreateWarehouseInput" | "LoginInput" | "RegisterInput" | "UpdateItemInput" | "UpdateStorageInput" | "UpdateWarehouseInput";
+export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateStorageInput" | "CreateWarehouseInput" | "ForgotPasswordInput" | "LoginInput" | "RegisterInput" | "ResetPasswordInput" | "UpdateItemInput" | "UpdateStorageInput" | "UpdateWarehouseInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 

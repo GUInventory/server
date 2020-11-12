@@ -92,6 +92,11 @@ A date string, such as 2007-12-03, compliant with the `full-date` format outline
 """
 scalar Date
 
+"""Input of forgot password"""
+input ForgotPasswordInput {
+  email: String!
+}
+
 type Item {
   attributes: [Attribute!]
   categories: [Category!]
@@ -119,8 +124,10 @@ type Mutation {
   deleteItem(id: Int!): Item
   deleteStorage(id: Int!): Storage
   deleteWarehouse(id: Int!): Warehouse
+  forgotPassword(data: ForgotPasswordInput!): Boolean
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
+  resetPassword(data: ResetPasswordInput!): Boolean
   updateItem(data: UpdateItemInput!, id: Int!): Item
   updateStorage(data: UpdateStorageInput!, id: Int!): Storage
   updateWarehouse(data: UpdateWarehouseInput!, id: Int!): Warehouse
@@ -160,6 +167,17 @@ input RegisterInput {
   email: String!
   name: String!
   password: String!
+}
+
+"""Input of password reset"""
+input ResetPasswordInput {
+  password: String!
+  token: String!
+}
+
+type ResetPasswordToken {
+  email: ID
+  token: String
 }
 
 type Role {
