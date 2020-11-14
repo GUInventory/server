@@ -3,17 +3,21 @@
 
 
 type Attribute {
+  createdAt: Date!
   id: ID
   item: [Item]!
   type: AttributeTypeEnum
+  updatedAt: Date!
   value: String
 }
 
 type AttributeType {
   category: [Category]!
+  createdAt: Date!
   id: ID
   name: String
   type: AttributeTypeEnum
+  updatedAt: Date!
 }
 
 enum AttributeTypeEnum {
@@ -31,10 +35,12 @@ type AuthenticationPayload {
 type Category {
   children: [Category!]
   color: String
+  createdAt: Date!
   id: ID
   items: [Item!]
   name: String
   parent: [Category]
+  updatedAt: Date!
 }
 
 """Input of pasword changing"""
@@ -100,6 +106,7 @@ input ForgotPasswordInput {
 type Item {
   attributes: [Attribute!]
   categories: [Category!]
+  createdAt: Date!
   id: ID
   image: String
   name: String
@@ -107,6 +114,7 @@ type Item {
   position: Position3D
   size: Size
   storage: Storage!
+  updatedAt: Date!
   value: Int
 }
 
@@ -134,9 +142,11 @@ type Mutation {
 }
 
 type Outgoing {
+  createdAt: Date!
   description: String
   id: ID
   item: [Item]!
+  updatedAt: Date!
   value: Int
 }
 
@@ -176,13 +186,17 @@ input ResetPasswordInput {
 }
 
 type ResetPasswordToken {
+  createdAt: Date!
   email: ID
   token: String
+  updatedAt: Date!
 }
 
 type Role {
+  createdAt: Date!
   id: ID
   roleType: RoleTypeEnum
+  updatedAt: Date!
   user: [User]!
   warehouse: [Warehouse]!
 }
@@ -201,11 +215,13 @@ type Size {
 }
 
 type Storage {
+  createdAt: Date!
   id: ID
   items: [Item!]
   name: String
   position: Position2D
   size: Size
+  updatedAt: Date!
   warehouse: Warehouse!
 }
 
@@ -250,20 +266,24 @@ input UpdateWarehouseInput {
 }
 
 type User {
+  createdAt: Date!
   email: String
   globalRole: RoleTypeEnum
   id: ID
   name: String
   password: String
   roles: [Role!]
+  updatedAt: Date!
   warehouses: [Warehouse!]
 }
 
 type Warehouse {
+  createdAt: Date!
   id: ID
   name: String
   roles: [Role!]
   size: Size
   storages: [Storage!]
+  updatedAt: Date!
   users: [User!]
 }

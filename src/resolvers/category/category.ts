@@ -25,7 +25,16 @@ export const Category = objectType({
       nullable: true,
     })
 
-    // t.dateTime('createdAt')
-    // t.dateTime('updatedAt')
+    t.field('createdAt', {
+      type: 'Date',
+      nullable: false,
+      resolve: ({ createdAt }) => createdAt,
+    })
+
+    t.field('updatedAt', {
+      type: 'Date',
+      nullable: false,
+      resolve: ({ updatedAt }) => updatedAt,
+    })
   },
 })
