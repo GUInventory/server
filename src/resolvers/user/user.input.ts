@@ -8,3 +8,15 @@ export const ChangePasswordInput = inputObjectType({
     t.string('newPassword', { required: true })
   },
 })
+
+export const UpdateUserInput = inputObjectType({
+  name: 'UpdateUserInput',
+  description: 'Input of update a user',
+  definition(t) {
+    t.string('name')
+    t.string('email')
+    t.field('globalRole', {
+      type: 'RoleTypeEnum',
+    })
+  },
+})

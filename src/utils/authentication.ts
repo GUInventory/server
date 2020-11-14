@@ -2,6 +2,7 @@ import { sign, verify } from 'jsonwebtoken'
 import { compare } from 'bcrypt'
 import { APP_SECRET } from '../config/environment'
 import { Context } from '../types'
+import { RoleType } from '@prisma/client'
 
 interface Token {
   userID: number
@@ -24,4 +25,10 @@ export const getUserID = (context: Context): number | undefined => {
 
   const verifiedToken = verifyToken(authorization)
   return verifiedToken?.userID
+}
+
+export const isGlobal = async (context: Context, role: RoleType): Promise<boolean> => {
+  const id = getUserID(context)
+  const user = await context.prisma.user.findOne({ where: { id } })
+  return user.globalRole === role
 }

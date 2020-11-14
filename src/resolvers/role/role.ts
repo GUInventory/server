@@ -11,13 +11,11 @@ export const Role = objectType({
 
     t.field('warehouse', {
       type: 'Warehouse',
-      list: [false],
       nullable: false,
     })
 
     t.field('user', {
       type: 'User',
-      list: [false],
       nullable: false,
     })
     t.field('createdAt', {
