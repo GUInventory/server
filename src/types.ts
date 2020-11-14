@@ -6,4 +6,5 @@ export interface Context {
   prisma: PrismaClient
   pubsub: PubSub
   req?: Request
+  userID?: number
 }
