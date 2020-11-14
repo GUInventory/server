@@ -1,5 +1,6 @@
 import { objectType, asNexusMethod, enumType, scalarType } from '@nexus/schema'
 import { GraphQLDate } from 'graphql-iso-date'
+import { GraphQLJSONObject } from 'graphql-type-json'
 
 export const DateTime = asNexusMethod(GraphQLDate, 'dateTime')
 
@@ -51,4 +52,7 @@ export const JSONScalar = scalarType({
   name: 'JSON',
   asNexusMethod: 'json',
   description: 'JSON scalar type',
+  serialize: GraphQLJSONObject.serialize,
+  parseValue: GraphQLJSONObject.parseValue,
+  parseLiteral: GraphQLJSONObject.parseLiteral,
 })

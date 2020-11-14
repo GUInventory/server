@@ -10,12 +10,12 @@ export const Log = objectType({
 
     t.field('oldValues', {
       type: 'JSON',
-      resolve: ({ oldValues }) => oldValues,
+      resolve: (root) => root['oldValues'],
     })
 
     t.field('newValues', {
       type: 'JSON',
-      resolve: ({ oldValues }) => oldValues,
+      resolve: (root) => root['newValues'],
     })
 
     t.field('type', {
