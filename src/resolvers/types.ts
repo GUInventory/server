@@ -1,5 +1,6 @@
-import { objectType, asNexusMethod, enumType } from '@nexus/schema'
+import { objectType, asNexusMethod, enumType, scalarType } from '@nexus/schema'
 import { GraphQLDate } from 'graphql-iso-date'
+import { GraphQLJSONObject } from 'graphql-type-json'
 
 export const DateTime = asNexusMethod(GraphQLDate, 'dateTime')
 
@@ -37,7 +38,21 @@ export const AttributeTypeEnum = enumType({
   members: ['STRING', 'DATE', 'DATETIME', 'NUMBER'],
 })
 
+export const LogTypeEnum = enumType({
+  name: 'LogTypeEnum',
+  members: ['EDIT', 'UPDATE', 'DELETE'],
+})
+
 export const RoleTypeEnum = enumType({
   name: 'RoleTypeEnum',
   members: ['ADMIN', 'EDITOR', 'USER'],
+})
+
+export const JSONScalar = scalarType({
+  name: 'JSON',
+  asNexusMethod: 'json',
+  description: 'JSON scalar type',
+  serialize: GraphQLJSONObject.serialize,
+  parseValue: GraphQLJSONObject.parseValue,
+  parseLiteral: GraphQLJSONObject.parseLiteral,
 })

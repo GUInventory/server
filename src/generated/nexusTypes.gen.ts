@@ -8,11 +8,13 @@ import { core } from "@nexus/schema"
 declare global {
   interface NexusGenCustomInputMethods<TypeName extends string> {
     dateTime<FieldName extends string>(fieldName: FieldName, opts?: core.ScalarInputFieldConfig<core.GetGen3<"inputTypes", TypeName, FieldName>>): void // "Date";
+    json<FieldName extends string>(fieldName: FieldName, opts?: core.ScalarInputFieldConfig<core.GetGen3<"inputTypes", TypeName, FieldName>>): void // "JSON";
   }
 }
 declare global {
   interface NexusGenCustomOutputMethods<TypeName extends string> {
     dateTime<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "Date";
+    json<FieldName extends string>(fieldName: FieldName, ...opts: core.ScalarOutSpread<TypeName, FieldName>): void // "JSON";
   }
 }
 declare global {
@@ -136,6 +138,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   AttributeTypeEnum: PrismaClient.AttributeTypeEnum
+  LogTypeEnum: "DELETE" | "EDIT" | "UPDATE"
   RoleTypeEnum: "ADMIN" | "EDITOR" | "USER"
 }
 
@@ -146,6 +149,7 @@ export interface NexusGenScalars {
   Boolean: boolean
   ID: string
   Date: any
+  JSON: any
 }
 
 export interface NexusGenRootTypes {
@@ -157,6 +161,7 @@ export interface NexusGenRootTypes {
   }
   Category: PrismaClient.Category;
   Item: PrismaClient.Item;
+  Log: PrismaClient.Log;
   Mutation: {};
   Outgoing: PrismaClient.Outgoing;
   Position2D: { // root type
@@ -206,6 +211,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   UpdateUserInput: NexusGenInputs['UpdateUserInput'];
   UpdateWarehouseInput: NexusGenInputs['UpdateWarehouseInput'];
   AttributeTypeEnum: NexusGenEnums['AttributeTypeEnum'];
+  LogTypeEnum: NexusGenEnums['LogTypeEnum'];
   RoleTypeEnum: NexusGenEnums['RoleTypeEnum'];
   String: NexusGenScalars['String'];
   Int: NexusGenScalars['Int'];
@@ -213,6 +219,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   Boolean: NexusGenScalars['Boolean'];
   ID: NexusGenScalars['ID'];
   Date: NexusGenScalars['Date'];
+  JSON: NexusGenScalars['JSON'];
 }
 
 export interface NexusGenFieldTypes {
@@ -252,6 +259,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     image: string | null; // String
+    logs: NexusGenRootTypes['Log'][] | null; // [Log!]
     name: string | null; // String
     outgoings: NexusGenRootTypes['Outgoing'][] | null; // [Outgoing!]
     position: NexusGenRootTypes['Position3D'] | null; // Position3D
@@ -259,6 +267,16 @@ export interface NexusGenFieldTypes {
     storage: NexusGenRootTypes['Storage']; // Storage!
     updatedAt: NexusGenScalars['Date']; // Date!
     value: number | null; // Int
+  }
+  Log: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
+    entityId: string | null; // String
+    entityName: string | null; // String
+    id: string | null; // ID
+    newValues: NexusGenScalars['JSON'] | null; // JSON
+    oldValues: NexusGenScalars['JSON'] | null; // JSON
+    type: NexusGenEnums['LogTypeEnum'] | null; // LogTypeEnum
+    userId: number | null; // Int
   }
   Mutation: { // field return type
     changePassword: NexusGenRootTypes['User'] | null; // User
@@ -303,6 +321,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     item: NexusGenRootTypes['Item'] | null; // Item
+    logs: Array<NexusGenRootTypes['Log'] | null> | null; // [Log]
     me: NexusGenRootTypes['User'] | null; // User
     myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
     roles: Array<NexusGenRootTypes['Role'] | null> | null; // [Role]
@@ -405,6 +424,7 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'Date'
     id: 'ID'
     image: 'String'
+    logs: 'Log'
     name: 'String'
     outgoings: 'Outgoing'
     position: 'Position3D'
@@ -412,6 +432,16 @@ export interface NexusGenFieldTypeNames {
     storage: 'Storage'
     updatedAt: 'Date'
     value: 'Int'
+  }
+  Log: { // field return type name
+    createdAt: 'Date'
+    entityId: 'String'
+    entityName: 'String'
+    id: 'ID'
+    newValues: 'JSON'
+    oldValues: 'JSON'
+    type: 'LogTypeEnum'
+    userId: 'Int'
   }
   Mutation: { // field return type name
     changePassword: 'User'
@@ -456,6 +486,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     categories: 'Category'
     item: 'Item'
+    logs: 'Log'
     me: 'User'
     myWarehouses: 'Warehouse'
     roles: 'Role'
@@ -614,15 +645,15 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "ResetPasswordToken" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
+export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Log" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "ResetPasswordToken" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
 
 export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateCategoryInput" | "CreateItemInput" | "CreateRoleInput" | "CreateStorageInput" | "CreateWarehouseInput" | "ForgotPasswordInput" | "LoginInput" | "RegisterInput" | "ResetPasswordInput" | "UpdateCategoryInput" | "UpdateItemInput" | "UpdateRoleInput" | "UpdateStorageInput" | "UpdateUserInput" | "UpdateWarehouseInput";
 
-export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
+export type NexusGenEnumNames = "AttributeTypeEnum" | "LogTypeEnum" | "RoleTypeEnum";
 
 export type NexusGenInterfaceNames = never;
 
-export type NexusGenScalarNames = "Boolean" | "Date" | "Float" | "ID" | "Int" | "String";
+export type NexusGenScalarNames = "Boolean" | "Date" | "Float" | "ID" | "Int" | "JSON" | "String";
 
 export type NexusGenUnionNames = never;
 

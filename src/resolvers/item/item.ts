@@ -53,6 +53,20 @@ export const Item = objectType({
       nullable: true,
     })
 
+    t.field('logs', {
+      type: 'Log',
+      list: [true],
+      nullable: true,
+      resolve: async ({ id }, {}, ctx) => {
+        return await ctx.prisma.log.findMany({
+          where: {
+            entityId: id,
+            entityName: 'Item',
+          },
+        })
+      },
+    })
+
     t.field('createdAt', {
       type: 'Date',
       nullable: false,
