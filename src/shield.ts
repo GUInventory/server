@@ -3,16 +3,13 @@ import { isAuthenticated } from './middleware/authentication'
 
 export const shield = GQLShield(
   {
-    Query: {
-      me: isAuthenticated,
-      warehouses: isAuthenticated,
-      warehouse: isAuthenticated,
-      storage: isAuthenticated,
-    },
     Mutation: {
       login: allow,
       register: allow,
     },
   },
-  { allowExternalErrors: true },
+  {
+    allowExternalErrors: true,
+    fallbackRule: isAuthenticated,
+  },
 )
