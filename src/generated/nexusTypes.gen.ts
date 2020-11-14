@@ -38,6 +38,11 @@ export interface NexusGenInputs {
   ConnectRelation: { // input type
     id: number; // Int!
   }
+  CreateCategoryInput: { // input type
+    color: string; // String!
+    name: string; // String!
+    parent: NexusGenInputs['ConnectRelation']; // ConnectRelation!
+  }
   CreateItemInput: { // input type
     image: string; // String!
     name: string; // String!
@@ -86,6 +91,11 @@ export interface NexusGenInputs {
   ResetPasswordInput: { // input type
     password: string; // String!
     token: string; // String!
+  }
+  UpdateCategoryInput: { // input type
+    color?: string | null; // String
+    name?: string | null; // String
+    parent?: NexusGenInputs['ConnectOrDisconnectRelation'] | null; // ConnectOrDisconnectRelation
   }
   UpdateItemInput: { // input type
     image?: string | null; // String
@@ -181,6 +191,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   ChangePasswordInput: NexusGenInputs['ChangePasswordInput'];
   ConnectOrDisconnectRelation: NexusGenInputs['ConnectOrDisconnectRelation'];
   ConnectRelation: NexusGenInputs['ConnectRelation'];
+  CreateCategoryInput: NexusGenInputs['CreateCategoryInput'];
   CreateItemInput: NexusGenInputs['CreateItemInput'];
   CreateRoleInput: NexusGenInputs['CreateRoleInput'];
   CreateStorageInput: NexusGenInputs['CreateStorageInput'];
@@ -189,6 +200,7 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
   LoginInput: NexusGenInputs['LoginInput'];
   RegisterInput: NexusGenInputs['RegisterInput'];
   ResetPasswordInput: NexusGenInputs['ResetPasswordInput'];
+  UpdateCategoryInput: NexusGenInputs['UpdateCategoryInput'];
   UpdateItemInput: NexusGenInputs['UpdateItemInput'];
   UpdateRoleInput: NexusGenInputs['UpdateRoleInput'];
   UpdateStorageInput: NexusGenInputs['UpdateStorageInput'];
@@ -251,10 +263,12 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     changePassword: NexusGenRootTypes['User'] | null; // User
+    createCategory: NexusGenRootTypes['Category'] | null; // Category
     createItem: NexusGenRootTypes['Item'] | null; // Item
     createRole: NexusGenRootTypes['Role'] | null; // Role
     createStorage: NexusGenRootTypes['Storage'] | null; // Storage
     createWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
+    deleteCategory: NexusGenRootTypes['Category'] | null; // Category
     deleteItem: NexusGenRootTypes['Item'] | null; // Item
     deleteRole: NexusGenRootTypes['Role'] | null; // Role
     deleteStorage: NexusGenRootTypes['Storage'] | null; // Storage
@@ -263,6 +277,7 @@ export interface NexusGenFieldTypes {
     login: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     register: NexusGenRootTypes['AuthenticationPayload'] | null; // AuthenticationPayload
     resetPassword: boolean | null; // Boolean
+    updateCategory: NexusGenRootTypes['Category'] | null; // Category
     updateItem: NexusGenRootTypes['Item'] | null; // Item
     updateRole: NexusGenRootTypes['Role'] | null; // Role
     updateStorage: NexusGenRootTypes['Storage'] | null; // Storage
@@ -287,6 +302,7 @@ export interface NexusGenFieldTypes {
     z: number | null; // Int
   }
   Query: { // field return type
+    categories: NexusGenRootTypes['Category'] | null; // Category
     item: NexusGenRootTypes['Item'] | null; // Item
     me: NexusGenRootTypes['User'] | null; // User
     myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
@@ -400,10 +416,12 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     changePassword: 'User'
+    createCategory: 'Category'
     createItem: 'Item'
     createRole: 'Role'
     createStorage: 'Storage'
     createWarehouse: 'Warehouse'
+    deleteCategory: 'Category'
     deleteItem: 'Item'
     deleteRole: 'Role'
     deleteStorage: 'Storage'
@@ -412,6 +430,7 @@ export interface NexusGenFieldTypeNames {
     login: 'AuthenticationPayload'
     register: 'AuthenticationPayload'
     resetPassword: 'Boolean'
+    updateCategory: 'Category'
     updateItem: 'Item'
     updateRole: 'Role'
     updateStorage: 'Storage'
@@ -436,6 +455,7 @@ export interface NexusGenFieldTypeNames {
     z: 'Int'
   }
   Query: { // field return type name
+    categories: 'Category'
     item: 'Item'
     me: 'User'
     myWarehouses: 'Warehouse'
@@ -507,6 +527,9 @@ export interface NexusGenArgTypes {
     changePassword: { // args
       data: NexusGenInputs['ChangePasswordInput']; // ChangePasswordInput!
     }
+    createCategory: { // args
+      data: NexusGenInputs['CreateCategoryInput']; // CreateCategoryInput!
+    }
     createItem: { // args
       data: NexusGenInputs['CreateItemInput']; // CreateItemInput!
     }
@@ -518,6 +541,9 @@ export interface NexusGenArgTypes {
     }
     createWarehouse: { // args
       data: NexusGenInputs['CreateWarehouseInput']; // CreateWarehouseInput!
+    }
+    deleteCategory: { // args
+      id: number; // Int!
     }
     deleteItem: { // args
       id: number; // Int!
@@ -542,6 +568,10 @@ export interface NexusGenArgTypes {
     }
     resetPassword: { // args
       data: NexusGenInputs['ResetPasswordInput']; // ResetPasswordInput!
+    }
+    updateCategory: { // args
+      data: NexusGenInputs['UpdateCategoryInput']; // UpdateCategoryInput!
+      id: number; // Int!
     }
     updateItem: { // args
       data: NexusGenInputs['UpdateItemInput']; // UpdateItemInput!
@@ -587,7 +617,7 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Attribute" | "AttributeType" | "AuthenticationPayload" | "Category" | "Item" | "Mutation" | "Outgoing" | "Position2D" | "Position3D" | "Query" | "ResetPasswordToken" | "Role" | "Size" | "Storage" | "Subscription" | "User" | "Warehouse";
 
-export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateItemInput" | "CreateRoleInput" | "CreateStorageInput" | "CreateWarehouseInput" | "ForgotPasswordInput" | "LoginInput" | "RegisterInput" | "ResetPasswordInput" | "UpdateItemInput" | "UpdateRoleInput" | "UpdateStorageInput" | "UpdateUserInput" | "UpdateWarehouseInput";
+export type NexusGenInputNames = "ChangePasswordInput" | "ConnectOrDisconnectRelation" | "ConnectRelation" | "CreateCategoryInput" | "CreateItemInput" | "CreateRoleInput" | "CreateStorageInput" | "CreateWarehouseInput" | "ForgotPasswordInput" | "LoginInput" | "RegisterInput" | "ResetPasswordInput" | "UpdateCategoryInput" | "UpdateItemInput" | "UpdateRoleInput" | "UpdateStorageInput" | "UpdateUserInput" | "UpdateWarehouseInput";
 
 export type NexusGenEnumNames = "AttributeTypeEnum" | "RoleTypeEnum";
 
