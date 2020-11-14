@@ -185,7 +185,7 @@ type Position3D {
 }
 
 type Query {
-  categories: Category
+  categories: [Category]
   item(id: Int!): Item
   me: User
   myWarehouses: [Warehouse]
@@ -259,7 +259,6 @@ type Subscription {
 input UpdateCategoryInput {
   color: String
   name: String
-  parent: ConnectOrDisconnectRelation
 }
 
 """Input of update an item"""
