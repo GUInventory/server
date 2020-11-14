@@ -269,6 +269,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     item: NexusGenRootTypes['Item'] | null; // Item
     me: NexusGenRootTypes['User'] | null; // User
+    myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
     storage: NexusGenRootTypes['Storage'] | null; // Storage
     users: Array<NexusGenRootTypes['User'] | null> | null; // [User]
     warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
@@ -412,6 +413,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     item: 'Item'
     me: 'User'
+    myWarehouses: 'Warehouse'
     storage: 'Storage'
     users: 'User'
     warehouse: 'Warehouse'
