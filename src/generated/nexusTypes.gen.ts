@@ -190,16 +190,20 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Attribute: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     item: Array<NexusGenRootTypes['Item'] | null>; // [Item]!
     type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date']; // Date!
     value: string | null; // String
   }
   AttributeType: { // field return type
     category: Array<NexusGenRootTypes['Category'] | null>; // [Category]!
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     name: string | null; // String
     type: NexusGenEnums['AttributeTypeEnum'] | null; // AttributeTypeEnum
+    updatedAt: NexusGenScalars['Date']; // Date!
   }
   AuthenticationPayload: { // field return type
     token: string | null; // String
@@ -208,14 +212,17 @@ export interface NexusGenFieldTypes {
   Category: { // field return type
     children: NexusGenRootTypes['Category'][] | null; // [Category!]
     color: string | null; // String
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     items: NexusGenRootTypes['Item'][] | null; // [Item!]
     name: string | null; // String
     parent: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    updatedAt: NexusGenScalars['Date']; // Date!
   }
   Item: { // field return type
     attributes: NexusGenRootTypes['Attribute'][] | null; // [Attribute!]
     categories: NexusGenRootTypes['Category'][] | null; // [Category!]
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     image: string | null; // String
     name: string | null; // String
@@ -223,6 +230,7 @@ export interface NexusGenFieldTypes {
     position: NexusGenRootTypes['Position3D'] | null; // Position3D
     size: NexusGenRootTypes['Size'] | null; // Size
     storage: NexusGenRootTypes['Storage']; // Storage!
+    updatedAt: NexusGenScalars['Date']; // Date!
     value: number | null; // Int
   }
   Mutation: { // field return type
@@ -242,9 +250,11 @@ export interface NexusGenFieldTypes {
     updateWarehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
   }
   Outgoing: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     description: string | null; // String
     id: string | null; // ID
     item: Array<NexusGenRootTypes['Item'] | null>; // [Item]!
+    updatedAt: NexusGenScalars['Date']; // Date!
     value: number | null; // Int
   }
   Position2D: { // field return type
@@ -265,12 +275,16 @@ export interface NexusGenFieldTypes {
     warehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
   }
   ResetPasswordToken: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     email: string | null; // ID
     token: string | null; // String
+    updatedAt: NexusGenScalars['Date']; // Date!
   }
   Role: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     roleType: NexusGenEnums['RoleTypeEnum'] | null; // RoleTypeEnum
+    updatedAt: NexusGenScalars['Date']; // Date!
     user: Array<NexusGenRootTypes['User'] | null>; // [User]!
     warehouse: Array<NexusGenRootTypes['Warehouse'] | null>; // [Warehouse]!
   }
@@ -280,11 +294,13 @@ export interface NexusGenFieldTypes {
     z: number | null; // Int
   }
   Storage: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     items: NexusGenRootTypes['Item'][] | null; // [Item!]
     name: string | null; // String
     position: NexusGenRootTypes['Position2D'] | null; // Position2D
     size: NexusGenRootTypes['Size'] | null; // Size
+    updatedAt: NexusGenScalars['Date']; // Date!
     warehouse: NexusGenRootTypes['Warehouse']; // Warehouse!
   }
   Subscription: { // field return type
@@ -293,36 +309,44 @@ export interface NexusGenFieldTypes {
     itemUpdated: NexusGenRootTypes['Item'] | null; // Item
   }
   User: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     email: string | null; // String
     globalRole: NexusGenEnums['RoleTypeEnum'] | null; // RoleTypeEnum
     id: string | null; // ID
     name: string | null; // String
     password: string | null; // String
     roles: NexusGenRootTypes['Role'][] | null; // [Role!]
+    updatedAt: NexusGenScalars['Date']; // Date!
     warehouses: NexusGenRootTypes['Warehouse'][] | null; // [Warehouse!]
   }
   Warehouse: { // field return type
+    createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     name: string | null; // String
     roles: NexusGenRootTypes['Role'][] | null; // [Role!]
     size: NexusGenRootTypes['Size'] | null; // Size
     storages: NexusGenRootTypes['Storage'][] | null; // [Storage!]
+    updatedAt: NexusGenScalars['Date']; // Date!
     users: NexusGenRootTypes['User'][] | null; // [User!]
   }
 }
 
 export interface NexusGenFieldTypeNames {
   Attribute: { // field return type name
+    createdAt: 'Date'
     id: 'ID'
     item: 'Item'
     type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
     value: 'String'
   }
   AttributeType: { // field return type name
     category: 'Category'
+    createdAt: 'Date'
     id: 'ID'
     name: 'String'
     type: 'AttributeTypeEnum'
+    updatedAt: 'Date'
   }
   AuthenticationPayload: { // field return type name
     token: 'String'
@@ -331,14 +355,17 @@ export interface NexusGenFieldTypeNames {
   Category: { // field return type name
     children: 'Category'
     color: 'String'
+    createdAt: 'Date'
     id: 'ID'
     items: 'Item'
     name: 'String'
     parent: 'Category'
+    updatedAt: 'Date'
   }
   Item: { // field return type name
     attributes: 'Attribute'
     categories: 'Category'
+    createdAt: 'Date'
     id: 'ID'
     image: 'String'
     name: 'String'
@@ -346,6 +373,7 @@ export interface NexusGenFieldTypeNames {
     position: 'Position3D'
     size: 'Size'
     storage: 'Storage'
+    updatedAt: 'Date'
     value: 'Int'
   }
   Mutation: { // field return type name
@@ -365,9 +393,11 @@ export interface NexusGenFieldTypeNames {
     updateWarehouse: 'Warehouse'
   }
   Outgoing: { // field return type name
+    createdAt: 'Date'
     description: 'String'
     id: 'ID'
     item: 'Item'
+    updatedAt: 'Date'
     value: 'Int'
   }
   Position2D: { // field return type name
@@ -388,12 +418,16 @@ export interface NexusGenFieldTypeNames {
     warehouses: 'Warehouse'
   }
   ResetPasswordToken: { // field return type name
+    createdAt: 'Date'
     email: 'ID'
     token: 'String'
+    updatedAt: 'Date'
   }
   Role: { // field return type name
+    createdAt: 'Date'
     id: 'ID'
     roleType: 'RoleTypeEnum'
+    updatedAt: 'Date'
     user: 'User'
     warehouse: 'Warehouse'
   }
@@ -403,11 +437,13 @@ export interface NexusGenFieldTypeNames {
     z: 'Int'
   }
   Storage: { // field return type name
+    createdAt: 'Date'
     id: 'ID'
     items: 'Item'
     name: 'String'
     position: 'Position2D'
     size: 'Size'
+    updatedAt: 'Date'
     warehouse: 'Warehouse'
   }
   Subscription: { // field return type name
@@ -416,20 +452,24 @@ export interface NexusGenFieldTypeNames {
     itemUpdated: 'Item'
   }
   User: { // field return type name
+    createdAt: 'Date'
     email: 'String'
     globalRole: 'RoleTypeEnum'
     id: 'ID'
     name: 'String'
     password: 'String'
     roles: 'Role'
+    updatedAt: 'Date'
     warehouses: 'Warehouse'
   }
   Warehouse: { // field return type name
+    createdAt: 'Date'
     id: 'ID'
     name: 'String'
     roles: 'Role'
     size: 'Size'
     storages: 'Storage'
+    updatedAt: 'Date'
     users: 'User'
   }
 }

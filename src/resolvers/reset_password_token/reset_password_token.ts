@@ -6,7 +6,16 @@ export const ResetPasswordToken = objectType({
     t.id('email')
     t.string('token')
 
-    // t.dateTime('createdAt')
-    // t.dateTime('updatedAt')
+    t.field('createdAt', {
+      type: 'Date',
+      nullable: false,
+      resolve: ({ createdAt }) => createdAt,
+    })
+
+    t.field('updatedAt', {
+      type: 'Date',
+      nullable: false,
+      resolve: ({ updatedAt }) => updatedAt,
+    })
   },
 })
