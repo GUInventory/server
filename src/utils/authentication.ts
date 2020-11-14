@@ -21,10 +21,12 @@ export const comparePasswords = async (password: string, userPassword: string): 
 
 export const getUserID = (context: Context): number | undefined => {
   const authorization = context.req?.headers?.authorization
-  if (!authorization) return undefined
+  if (authorization) {
+    const verifiedToken = verifyToken(authorization)
+    return verifiedToken?.userID
+  }
 
-  const verifiedToken = verifyToken(authorization)
-  return verifiedToken?.userID
+  return context.userID
 }
 
 export const isGlobal = async (context: Context, role: RoleType): Promise<boolean> => {

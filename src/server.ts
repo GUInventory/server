@@ -6,6 +6,7 @@ import { PubSub } from 'apollo-server'
 import express from 'express'
 import { schema } from './schema'
 import { shield } from './shield'
+import { verifyToken } from './utils/authentication'
 
 const PORT = 4000
 
@@ -15,11 +16,20 @@ const prisma = new PrismaClient()
 const pubsub = new PubSub()
 
 const apollo = new ApolloServer({
-  context: ({ req }) => ({ req, prisma, pubsub }),
   subscriptions: {
-    onConnect: async () => {
-      console.log('New subscription')
+    onConnect: async (header: { Authorization: null | string }) => {
+      if (!header.Authorization) throw new Error('Invalid or missing token')
+      const token = verifyToken(header.Authorization)
+      if (!token.userID) throw new Error('Invalid or missing token')
+      return { userID: token.userID }
     },
+  },
+  context: async ({ req, connection }) => {
+    return {
+      ...(connection ? connection.context : { req: req }),
+      prisma,
+      pubsub,
+    }
   },
   schema: applyMiddleware(schema, shield),
 })
