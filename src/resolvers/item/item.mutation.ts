@@ -2,6 +2,7 @@ import { extendType, intArg } from '@nexus/schema'
 import { CreateItemInput, UpdateItemInput } from './item.input'
 import { Context } from '../../types'
 import { publishItemEvent } from './item.subscription'
+import { log } from '../../utils/log'
 
 export const ItemMutation = extendType({
   type: 'Mutation',
@@ -9,14 +10,21 @@ export const ItemMutation = extendType({
     t.field('createItem', {
       type: 'Item',
       args: { data: CreateItemInput.asArg({ required: true }) },
-      resolve: async (_, { data: { storage, ...rest } }, ctx: Context) => {
-        const item = await ctx.prisma.item.create({
+      resolve: async (_, { data: { storage, ...rest } }, context: Context) => {
+        const item = await context.prisma.item.create({
           data: {
             storage: { connect: storage },
             ...rest,
           },
         })
-        await publishItemEvent('itemCreated', item, ctx)
+        await log({
+          type: 'CREATE',
+          entityId: item.id,
+          entityName: 'Item',
+          newValues: { storage, ...rest },
+          context,
+        })
+        await publishItemEvent('itemCreated', item, context)
         return item
       },
     })
@@ -27,12 +35,19 @@ export const ItemMutation = extendType({
         id: intArg({ required: true }),
         data: UpdateItemInput.asArg({ required: true }),
       },
-      resolve: async (_, { id, data }, ctx: Context) => {
-        const item = await ctx.prisma.item.update({
+      resolve: async (_, { id, data }, context: Context) => {
+        const item = await context.prisma.item.update({
           where: { id },
           data,
         })
-        await publishItemEvent('itemUpdated', item, ctx)
+        await log({
+          type: 'EDIT',
+          entityId: id,
+          entityName: 'Item',
+          newValues: data,
+          context,
+        })
+        await publishItemEvent('itemUpdated', item, context)
         return item
       },
     })
@@ -42,11 +57,18 @@ export const ItemMutation = extendType({
       args: {
         id: intArg({ required: true }),
       },
-      resolve: async (_, { id }, ctx: Context) => {
-        const item = await ctx.prisma.item.delete({
+      resolve: async (_, { id }, context: Context) => {
+        const item = await context.prisma.item.delete({
           where: { id },
         })
-        await publishItemEvent('itemDeleted', item, ctx)
+        await log({
+          type: 'DELETE',
+          entityId: id,
+          entityName: 'Item',
+          oldValues: item,
+          context,
+        })
+        await publishItemEvent('itemDeleted', item, context)
         return item
       },
     })
