@@ -57,8 +57,8 @@ export const Item = objectType({
       type: 'Log',
       list: [true],
       nullable: true,
-      resolve: ({ id }, {}, ctx) => {
-        ctx.prisma.log.findMany({
+      resolve: async ({ id }, {}, ctx) => {
+        return await ctx.prisma.log.findMany({
           where: {
             entityId: id,
             entityName: 'Item',
