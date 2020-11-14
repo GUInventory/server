@@ -16,6 +16,5 @@ export const UpdateCategoryInput = inputObjectType({
   definition(t) {
     t.string('name')
     t.string('color')
-    t.field('parent', { type: 'ConnectOrDisconnectRelation' })
   },
 })

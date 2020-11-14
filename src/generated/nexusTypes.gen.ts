@@ -95,7 +95,6 @@ export interface NexusGenInputs {
   UpdateCategoryInput: { // input type
     color?: string | null; // String
     name?: string | null; // String
-    parent?: NexusGenInputs['ConnectOrDisconnectRelation'] | null; // ConnectOrDisconnectRelation
   }
   UpdateItemInput: { // input type
     image?: string | null; // String
@@ -302,7 +301,7 @@ export interface NexusGenFieldTypes {
     z: number | null; // Int
   }
   Query: { // field return type
-    categories: NexusGenRootTypes['Category'] | null; // Category
+    categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     item: NexusGenRootTypes['Item'] | null; // Item
     me: NexusGenRootTypes['User'] | null; // User
     myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
