@@ -7,7 +7,7 @@ const config = getConfig()
 test('successfully register a user', async () => {
   const data = {
     name: 'User Name',
-    email: 'test-user@example.org',
+    email: 'test.user@example.org',
     password: 'password',
   }
   const req: any = await request(config.url, register, data)
@@ -18,7 +18,7 @@ test('successfully register a user', async () => {
 
 test('successfully get token on login', async () => {
   const data = {
-    email: 'test-user@example.org',
+    email: 'test.user@example.org',
     password: 'password',
   }
   const req: any = await request(config.url, login, data)

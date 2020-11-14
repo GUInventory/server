@@ -7,6 +7,7 @@ export const register = gql`
       user {
         id
         name
+        email
       }
     }
   }
