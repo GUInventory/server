@@ -73,6 +73,13 @@ input CreateItemInput {
   value: Int!
 }
 
+"""Input of create role"""
+input CreateRoleInput {
+  roleType: RoleTypeEnum!
+  user: ConnectRelation!
+  warehouse: ConnectRelation!
+}
+
 """Input of create storage"""
 input CreateStorageInput {
   name: String!
@@ -127,9 +134,11 @@ input LoginInput {
 type Mutation {
   changePassword(data: ChangePasswordInput!): User
   createItem(data: CreateItemInput!): Item
+  createRole(data: CreateRoleInput!): Role
   createStorage(data: CreateStorageInput!): Storage
   createWarehouse(data: CreateWarehouseInput!): Warehouse
   deleteItem(id: Int!): Item
+  deleteRole(id: Int!): Role
   deleteStorage(id: Int!): Storage
   deleteWarehouse(id: Int!): Warehouse
   forgotPassword(data: ForgotPasswordInput!): Boolean
@@ -137,7 +146,9 @@ type Mutation {
   register(data: RegisterInput!): AuthenticationPayload
   resetPassword(data: ResetPasswordInput!): Boolean
   updateItem(data: UpdateItemInput!, id: Int!): Item
+  updateRole(data: UpdateRoleInput!, id: Int!): Role
   updateStorage(data: UpdateStorageInput!, id: Int!): Storage
+  updateUser(data: UpdateUserInput!, id: Int!): User
   updateWarehouse(data: UpdateWarehouseInput!, id: Int!): Warehouse
 }
 
@@ -167,6 +178,7 @@ type Query {
   item(id: Int!): Item
   me: User
   myWarehouses: [Warehouse]
+  roles: [Role]
   storage(id: Int!): Storage
   users(world: String): [User]
   warehouse(id: Int!): Warehouse
@@ -198,8 +210,8 @@ type Role {
   id: ID
   roleType: RoleTypeEnum
   updatedAt: Date!
-  user: [User]!
-  warehouse: [Warehouse]!
+  user: User!
+  warehouse: Warehouse!
 }
 
 enum RoleTypeEnum {
@@ -246,6 +258,11 @@ input UpdateItemInput {
   value: Int
 }
 
+"""Input of update a role"""
+input UpdateRoleInput {
+  roleType: RoleTypeEnum
+}
+
 """Input of update an storage"""
 input UpdateStorageInput {
   name: String
@@ -256,6 +273,13 @@ input UpdateStorageInput {
   sizeY: Int
   sizeZ: Int
   warehouse: ConnectOrDisconnectRelation
+}
+
+"""Input of update a user"""
+input UpdateUserInput {
+  email: String
+  globalRole: RoleTypeEnum
+  name: String
 }
 
 """Input of update an warehouse"""

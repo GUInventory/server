@@ -12,6 +12,7 @@ export const shield = GQLShield(
       register: allow,
       updateUser: isGlobalAdmin,
       createRole: isGlobalAdmin,
+      updateRole: isGlobalAdmin,
     },
   },
   {

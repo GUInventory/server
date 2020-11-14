@@ -1,5 +1,5 @@
 import { extendType, intArg } from '@nexus/schema'
-import { CreateRoleInput } from './role.input'
+import { CreateRoleInput, UpdateRoleInput } from './role.input'
 import { Context } from '../../types'
 
 export const RoleMutation = extendType({
@@ -12,6 +12,20 @@ export const RoleMutation = extendType({
       },
       resolve: async (_, { data }, ctx: Context) => {
         return await ctx.prisma.role.create({
+          data,
+        })
+      },
+    })
+
+    t.field('updateRole', {
+      type: 'Role',
+      args: {
+        id: intArg({ required: true }),
+        data: UpdateRoleInput.asArg({ required: true }),
+      },
+      resolve: async (_, { id, data }, ctx: Context) => {
+        return await ctx.prisma.role.update({
+          where: { id },
           data,
         })
       },

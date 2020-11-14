@@ -6,12 +6,25 @@ export const CreateRoleInput = inputObjectType({
   definition(t) {
     t.field('roleType', {
       type: 'RoleTypeEnum',
+      required: true,
     })
     t.field('user', {
       type: 'ConnectRelation',
+      required: true,
     })
     t.field('warehouse', {
       type: 'ConnectRelation',
+      required: true,
+    })
+  },
+})
+
+export const UpdateRoleInput = inputObjectType({
+  name: 'UpdateRoleInput',
+  description: 'Input of update a role',
+  definition(t) {
+    t.field('roleType', {
+      type: 'RoleTypeEnum',
     })
   },
 })
