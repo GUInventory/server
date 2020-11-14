@@ -1,5 +1,7 @@
 import { extendType, intArg } from '@nexus/schema'
 import { CreateWarehouseInput, UpdateWarehouseInput } from './warehouse.input'
+import { getUserID } from '../../utils/authentication'
+import { Context } from '../../types'
 
 export const WarehouseMutation = extendType({
   type: 'Mutation',
@@ -7,10 +9,17 @@ export const WarehouseMutation = extendType({
     t.field('createWarehouse', {
       type: 'Warehouse',
       args: { data: CreateWarehouseInput.asArg({ required: true }) },
-      resolve: (_, { data }, ctx) => {
-        // TODO: Add user to the warehouse as admin
+      resolve: (_, { data }, ctx: Context) => {
         return ctx.prisma.warehouse.create({
-          data,
+          data: {
+            ...data,
+            roles: {
+              create: {
+                roleType: 'ADMIN',
+                user: { connect: { id: getUserID(ctx) } },
+              },
+            },
+          },
         })
       },
     })
