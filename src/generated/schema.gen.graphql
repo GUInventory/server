@@ -59,6 +59,13 @@ input ConnectRelation {
   id: Int!
 }
 
+"""Input of create category"""
+input CreateCategoryInput {
+  color: String!
+  name: String!
+  parent: ConnectRelation!
+}
+
 """Input of create item"""
 input CreateItemInput {
   image: String!
@@ -133,10 +140,12 @@ input LoginInput {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User
+  createCategory(data: CreateCategoryInput!): Category
   createItem(data: CreateItemInput!): Item
   createRole(data: CreateRoleInput!): Role
   createStorage(data: CreateStorageInput!): Storage
   createWarehouse(data: CreateWarehouseInput!): Warehouse
+  deleteCategory(id: Int!): Category
   deleteItem(id: Int!): Item
   deleteRole(id: Int!): Role
   deleteStorage(id: Int!): Storage
@@ -145,6 +154,7 @@ type Mutation {
   login(data: LoginInput!): AuthenticationPayload
   register(data: RegisterInput!): AuthenticationPayload
   resetPassword(data: ResetPasswordInput!): Boolean
+  updateCategory(data: UpdateCategoryInput!, id: Int!): Category
   updateItem(data: UpdateItemInput!, id: Int!): Item
   updateRole(data: UpdateRoleInput!, id: Int!): Role
   updateStorage(data: UpdateStorageInput!, id: Int!): Storage
@@ -175,6 +185,7 @@ type Position3D {
 }
 
 type Query {
+  categories: Category
   item(id: Int!): Item
   me: User
   myWarehouses: [Warehouse]
@@ -242,6 +253,13 @@ type Subscription {
   itemCreated: Item
   itemDeleted: Item
   itemUpdated: Item
+}
+
+"""Input of update an category"""
+input UpdateCategoryInput {
+  color: String
+  name: String
+  parent: ConnectOrDisconnectRelation
 }
 
 """Input of update an item"""
