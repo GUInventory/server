@@ -132,10 +132,30 @@ type Item {
   value: Int
 }
 
+"""JSON scalar type"""
+scalar JSON
+
+type Log {
+  createdAt: Date!
+  entityId: String
+  entityName: String
+  id: ID
+  newValues: JSON
+  oldValues: JSON
+  type: LogTypeEnum
+  userId: Int
+}
+
 """Input of login"""
 input LoginInput {
   email: String!
   password: String!
+}
+
+enum LogTypeEnum {
+  DELETE
+  EDIT
+  UPDATE
 }
 
 type Mutation {
