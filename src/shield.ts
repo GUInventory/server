@@ -5,11 +5,13 @@ export const shield = GQLShield(
   {
     Query: {
       warehouses: isGlobalAdmin,
+      roles: isGlobalAdmin,
     },
     Mutation: {
       login: allow,
       register: allow,
       updateUser: isGlobalAdmin,
+      createRole: isGlobalAdmin,
     },
   },
   {
