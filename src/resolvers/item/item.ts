@@ -32,7 +32,6 @@ export const Item = objectType({
 
     t.field('storage', {
       type: 'Storage',
-      list: [false],
       nullable: false,
     })
 
