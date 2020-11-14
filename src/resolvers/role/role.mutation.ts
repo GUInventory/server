@@ -10,9 +10,13 @@ export const RoleMutation = extendType({
       args: {
         data: CreateRoleInput.asArg({ required: true }),
       },
-      resolve: async (_, { data }, ctx: Context) => {
+      resolve: async (_, { data: { user, warehouse, ...rest } }, ctx: Context) => {
         return await ctx.prisma.role.create({
-          data,
+          data: {
+            user: { connect: user },
+            warehouse: { connect: warehouse },
+            ...rest,
+          },
         })
       },
     })
