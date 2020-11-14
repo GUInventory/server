@@ -222,7 +222,7 @@ export interface NexusGenFieldTypes {
     outgoings: NexusGenRootTypes['Outgoing'][] | null; // [Outgoing!]
     position: NexusGenRootTypes['Position3D'] | null; // Position3D
     size: NexusGenRootTypes['Size'] | null; // Size
-    storage: Array<NexusGenRootTypes['Storage'] | null>; // [Storage]!
+    storage: NexusGenRootTypes['Storage']; // Storage!
     value: number | null; // Int
   }
   Mutation: { // field return type
@@ -285,7 +285,7 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
     position: NexusGenRootTypes['Position2D'] | null; // Position2D
     size: NexusGenRootTypes['Size'] | null; // Size
-    warehouse: NexusGenRootTypes['Warehouse'][]; // [Warehouse!]!
+    warehouse: NexusGenRootTypes['Warehouse']; // Warehouse!
   }
   Subscription: { // field return type
     itemCreated: NexusGenRootTypes['Item'] | null; // Item

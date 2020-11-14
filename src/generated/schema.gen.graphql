@@ -106,7 +106,7 @@ type Item {
   outgoings: [Outgoing!]
   position: Position3D
   size: Size
-  storage: [Storage]!
+  storage: Storage!
   value: Int
 }
 
@@ -206,7 +206,7 @@ type Storage {
   name: String
   position: Position2D
   size: Size
-  warehouse: [Warehouse!]!
+  warehouse: Warehouse!
 }
 
 type Subscription {
