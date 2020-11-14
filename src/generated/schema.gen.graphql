@@ -123,6 +123,7 @@ type Item {
   createdAt: Date!
   id: ID
   image: String
+  logs: [Log!]
   name: String
   outgoings: [Outgoing!]
   position: Position3D
@@ -207,6 +208,7 @@ type Position3D {
 type Query {
   categories: [Category]
   item(id: Int!): Item
+  logs: [Log]
   me: User
   myWarehouses: [Warehouse]
   roles: [Role]

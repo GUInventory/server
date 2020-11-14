@@ -259,6 +259,7 @@ export interface NexusGenFieldTypes {
     createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
     image: string | null; // String
+    logs: NexusGenRootTypes['Log'][] | null; // [Log!]
     name: string | null; // String
     outgoings: NexusGenRootTypes['Outgoing'][] | null; // [Outgoing!]
     position: NexusGenRootTypes['Position3D'] | null; // Position3D
@@ -320,6 +321,7 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     item: NexusGenRootTypes['Item'] | null; // Item
+    logs: Array<NexusGenRootTypes['Log'] | null> | null; // [Log]
     me: NexusGenRootTypes['User'] | null; // User
     myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
     roles: Array<NexusGenRootTypes['Role'] | null> | null; // [Role]
@@ -422,6 +424,7 @@ export interface NexusGenFieldTypeNames {
     createdAt: 'Date'
     id: 'ID'
     image: 'String'
+    logs: 'Log'
     name: 'String'
     outgoings: 'Outgoing'
     position: 'Position3D'
@@ -483,6 +486,7 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     categories: 'Category'
     item: 'Item'
+    logs: 'Log'
     me: 'User'
     myWarehouses: 'Warehouse'
     roles: 'Role'
