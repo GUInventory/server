@@ -2,7 +2,7 @@
   "name": "guinventory",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node src/index.ts",
     "lint": "eslint '*/**/*.ts' --quiet --fix",
     "generate": "yarn generate:prisma && yarn generate:nexus",
     "generate:prisma": "prisma generate",
@@ -10,7 +10,8 @@
     "migrate:save": "prisma migrate save --experimental",
     "migrate:up": "prisma migrate up --experimental",
     "migrate:down": "prisma migrate down 1 --experimental",
-    "seed": "ts-node ./prisma/seed.ts"
+    "seed": "ts-node ./prisma/seed.ts",
+    "test": "jest --detectOpenHandles"
   },
   "dependencies": {
     "@nexus/schema": "^0.17.0",
@@ -29,15 +30,21 @@
   },
   "devDependencies": {
     "@types/faker": "^5.1.4",
+    "@types/jest": "^26.0.15",
+    "@types/pg": "^7.14.6",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
     "faker": "^5.1.0",
+    "graphql-request": "^3.3.0",
     "husky": "^4.3.0",
+    "jest": "^26.6.3",
     "lint-staged": "^10.5.1",
+    "pg": "^8.5.1",
     "prettier": "^2.1.2",
+    "ts-jest": "^26.4.4",
     "ts-node-dev": "^1.0.0",
     "typescript": "^4.0.5"
   },
