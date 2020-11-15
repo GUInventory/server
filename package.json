@@ -14,6 +14,9 @@
     "test": "jest --detectOpenHandles --forceExit",
     "build": "yarn generate && yarn tsc --skipLibCheck"
   },
+  "engines": {
+    "node": "10.19.x"
+  },
   "dependencies": {
     "@nexus/schema": "^0.17.0",
     "@prisma/cli": "2.11.0",
