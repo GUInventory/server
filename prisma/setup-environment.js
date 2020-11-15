@@ -6,18 +6,16 @@ const { execSync } = require('child_process')
 
 const prismaBinary = path.join(__dirname, '..', 'node_modules', '.bin', 'prisma')
 let databaseUrl
-let schema
 
 class SetupEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config)
-    schema = `test_${v4()}`
-    databaseUrl = `postgres://postgres:password@localhost:5432/test?schema=${schema}`
+    databaseUrl = `postgres://postgres:password@localhost:5432/test?schema=test`
     process.env.DATABASE_URL = databaseUrl
   }
 
   async setup() {
-    execSync(`${prismaBinary} migrate up --create-db --experimental`, {
+    await execSync(`${prismaBinary} migrate up --create-db --experimental`, {
       env: {
         ...process.env,
         DATABASE_URL: databaseUrl,
@@ -32,10 +30,11 @@ class SetupEnvironment extends NodeEnvironment {
       connectionString: databaseUrl,
     })
     await client.connect()
-    await client.query(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`)
+    await client.query(`DROP SCHEMA IF EXISTS "test" CASCADE`)
     await client.end()
 
     console.log('🟢 DATABASE DROPPED')
+    return super.teardown()
   }
 }
 
