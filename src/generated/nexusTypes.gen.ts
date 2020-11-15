@@ -19,8 +19,8 @@ declare global {
 }
 declare global {
   interface NexusGenCustomOutputProperties<TypeName extends string> {
-    crud: NexusPrisma<TypeName, 'crud'>
     model: NexusPrisma<TypeName, 'model'>
+    crud: any
   }
 }
 
