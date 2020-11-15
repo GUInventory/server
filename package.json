@@ -12,7 +12,7 @@
     "migrate:down": "prisma migrate down 1 --experimental",
     "seed": "ts-node ./prisma/seed.ts",
     "test": "jest --detectOpenHandles --forceExit",
-    "build": "yarn generate && yarn tsc --skipLibCheck"
+    "build": "yarn generate && yarn migrate:up && yarn tsc --skipLibCheck"
   },
   "engines": {
     "node": "10.19.x"
