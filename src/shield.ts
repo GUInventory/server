@@ -4,9 +4,11 @@ import { isAuthenticated, isGlobalAdmin } from './middleware/authentication'
 const shieldFallback = async (parent, args, ctx, info) => {
   switch (info.parentType.name) {
     case 'Query':
-      return false
+      return isAuthenticated(parent, args, ctx, info)
     case 'Mutation':
-      return false
+      return isAuthenticated(parent, args, ctx, info)
+    case 'Subscription':
+      return isAuthenticated(parent, args, ctx, info)
     default:
       return true
   }
