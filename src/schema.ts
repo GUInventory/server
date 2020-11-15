@@ -5,11 +5,7 @@ import * as types from './resolvers'
 
 export const schema = makeSchema({
   types,
-  plugins: [
-    nexusSchemaPrisma({
-      experimentalCRUD: true,
-    }),
-  ],
+  plugins: [nexusSchemaPrisma({})],
   typegenAutoConfig: {
     contextType: '{ prisma: PrismaClient.PrismaClient }',
     sources: [{ source: '.prisma/client', alias: 'PrismaClient' }],
