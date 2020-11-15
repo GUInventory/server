@@ -12,7 +12,7 @@
     "migrate:down": "prisma migrate down 1 --experimental",
     "seed": "ts-node ./prisma/seed.ts",
     "test": "jest --detectOpenHandles --forceExit",
-    "build": "yarn generate && yarn tsc"
+    "build": "yarn generate && yarn tsc --skipLibCheck"
   },
   "dependencies": {
     "@nexus/schema": "^0.17.0",
