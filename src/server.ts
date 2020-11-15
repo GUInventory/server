@@ -8,8 +8,6 @@ import { schema } from './schema'
 import { shield } from './shield'
 import { verifyToken } from './utils/authentication'
 
-const PORT = 4000
-
 const app = express()
 const server = createServer(app)
 const prisma = new PrismaClient()
@@ -38,7 +36,4 @@ apollo.applyMiddleware({ app, cors: true })
 
 apollo.installSubscriptionHandlers(server)
 
-server.listen(PORT, () => {
-  console.log(`🚀 Server ready at http://localhost:${PORT}${apollo.graphqlPath}`)
-  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${apollo.subscriptionsPath}`)
-})
+export default server
