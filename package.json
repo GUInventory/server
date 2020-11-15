@@ -15,7 +15,7 @@
     "build": "yarn generate && yarn migrate:up && yarn tsc --skipLibCheck"
   },
   "engines": {
-    "node": "10.19.x"
+    "node": "10.23.x"
   },
   "dependencies": {
     "@nexus/schema": "^0.17.0",
