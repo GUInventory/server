@@ -6,7 +6,7 @@ export const CreateCategoryInput = inputObjectType({
   definition(t) {
     t.string('name', { required: true })
     t.string('color', { required: true })
-    t.field('parent', { type: 'ConnectRelation', required: true })
+    t.field('parent', { type: 'ConnectRelation', required: false })
   },
 })
 

@@ -63,7 +63,7 @@ input ConnectRelation {
 input CreateCategoryInput {
   color: String!
   name: String!
-  parent: ConnectRelation!
+  parent: ConnectRelation
 }
 
 """Input of create item"""
@@ -207,6 +207,7 @@ type Position3D {
 
 type Query {
   categories: [Category]
+  category(id: Int!): Category
   item(id: Int!): Item
   logs: [Log]
   me: User
