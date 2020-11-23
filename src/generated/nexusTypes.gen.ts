@@ -43,7 +43,7 @@ export interface NexusGenInputs {
   CreateCategoryInput: { // input type
     color: string; // String!
     name: string; // String!
-    parent: NexusGenInputs['ConnectRelation']; // ConnectRelation!
+    parent?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
   }
   CreateItemInput: { // input type
     image: string; // String!
@@ -320,6 +320,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
+    category: NexusGenRootTypes['Category'] | null; // Category
     item: NexusGenRootTypes['Item'] | null; // Item
     logs: Array<NexusGenRootTypes['Log'] | null> | null; // [Log]
     me: NexusGenRootTypes['User'] | null; // User
@@ -485,6 +486,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     categories: 'Category'
+    category: 'Category'
     item: 'Item'
     logs: 'Log'
     me: 'User'
@@ -625,6 +627,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    category: { // args
+      id: number; // Int!
+    }
     item: { // args
       id: number; // Int!
     }
