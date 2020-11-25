@@ -274,6 +274,7 @@ export interface NexusGenFieldTypes {
     newValues: NexusGenScalars['JSON'] | null; // JSON
     oldValues: NexusGenScalars['JSON'] | null; // JSON
     type: NexusGenEnums['LogTypeEnum'] | null; // LogTypeEnum
+    user: NexusGenRootTypes['User']; // User!
     userId: number | null; // Int
   }
   Mutation: { // field return type
@@ -440,6 +441,7 @@ export interface NexusGenFieldTypeNames {
     newValues: 'JSON'
     oldValues: 'JSON'
     type: 'LogTypeEnum'
+    user: 'User'
     userId: 'Int'
   }
   Mutation: { // field return type name

@@ -143,6 +143,7 @@ type Log {
   newValues: JSON
   oldValues: JSON
   type: LogTypeEnum
+  user: User!
   userId: Int
 }
 
