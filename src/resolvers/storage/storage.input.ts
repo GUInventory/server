@@ -10,7 +10,6 @@ export const CreateStorageInput = inputObjectType({
     t.int('sizeZ', { required: true })
     t.int('positionX', { required: true })
     t.int('positionY', { required: true })
-    t.int('positionZ', { required: true })
     t.field('warehouse', { type: 'ConnectRelation', required: true })
   },
 })
@@ -25,7 +24,6 @@ export const UpdateStorageInput = inputObjectType({
     t.int('sizeZ')
     t.int('positionX')
     t.int('positionY')
-    t.int('positionZ')
     t.field('warehouse', { type: 'ConnectOrDisconnectRelation' })
   },
 })
