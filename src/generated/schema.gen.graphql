@@ -92,7 +92,6 @@ input CreateStorageInput {
   name: String!
   positionX: Int!
   positionY: Int!
-  positionZ: Int!
   sizeX: Int!
   sizeY: Int!
   sizeZ: Int!
@@ -308,7 +307,6 @@ input UpdateStorageInput {
   name: String
   positionX: Int
   positionY: Int
-  positionZ: Int
   sizeX: Int
   sizeY: Int
   sizeZ: Int

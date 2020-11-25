@@ -66,7 +66,6 @@ export interface NexusGenInputs {
     name: string; // String!
     positionX: number; // Int!
     positionY: number; // Int!
-    positionZ: number; // Int!
     sizeX: number; // Int!
     sizeY: number; // Int!
     sizeZ: number; // Int!
@@ -117,7 +116,6 @@ export interface NexusGenInputs {
     name?: string | null; // String
     positionX?: number | null; // Int
     positionY?: number | null; // Int
-    positionZ?: number | null; // Int
     sizeX?: number | null; // Int
     sizeY?: number | null; // Int
     sizeZ?: number | null; // Int
