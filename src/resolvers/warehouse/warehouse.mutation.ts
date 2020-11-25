@@ -43,8 +43,13 @@ export const WarehouseMutation = extendType({
       args: {
         id: intArg({ required: true }),
       },
-      resolve: (_, { id }, ctx) => {
-        return ctx.prisma.warehouse.delete({
+      resolve: async (_, { id }, ctx) => {
+        await ctx.prisma.role.deleteMany({
+          where: {
+            warehouseId: id,
+          },
+        })
+        return await ctx.prisma.warehouse.delete({
           where: { id },
         })
       },
