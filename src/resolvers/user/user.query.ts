@@ -7,10 +7,7 @@ export const UserQuery = extendType({
   definition: (t) => {
     t.list.field('users', {
       type: 'User',
-      args: {
-        world: stringArg({ required: false }),
-      },
-      resolve(_root, _args, ctx) {
+      resolve(_root, {}, ctx) {
         return ctx.prisma.user.findMany()
       },
     })

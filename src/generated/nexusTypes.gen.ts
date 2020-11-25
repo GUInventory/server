@@ -634,9 +634,6 @@ export interface NexusGenArgTypes {
     storage: { // args
       id: number; // Int!
     }
-    users: { // args
-      world?: string | null; // String
-    }
     warehouse: { // args
       id: number; // Int!
     }

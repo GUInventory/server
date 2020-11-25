@@ -213,7 +213,7 @@ type Query {
   myWarehouses: [Warehouse]
   roles: [Role]
   storage(id: Int!): Storage
-  users(world: String): [User]
+  users: [User]
   warehouse(id: Int!): Warehouse
   warehouses: [Warehouse]
 }
