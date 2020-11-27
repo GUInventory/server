@@ -209,6 +209,7 @@ type Query {
   categories: [Category]
   category(id: Int!): Category
   item(id: Int!): Item
+  items(query: String!): [Item]
   logs: [Log]
   me: User
   myWarehouses: [Warehouse]

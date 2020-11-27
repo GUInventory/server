@@ -321,6 +321,7 @@ export interface NexusGenFieldTypes {
     categories: Array<NexusGenRootTypes['Category'] | null> | null; // [Category]
     category: NexusGenRootTypes['Category'] | null; // Category
     item: NexusGenRootTypes['Item'] | null; // Item
+    items: Array<NexusGenRootTypes['Item'] | null> | null; // [Item]
     logs: Array<NexusGenRootTypes['Log'] | null> | null; // [Log]
     me: NexusGenRootTypes['User'] | null; // User
     myWarehouses: Array<NexusGenRootTypes['Warehouse'] | null> | null; // [Warehouse]
@@ -488,6 +489,7 @@ export interface NexusGenFieldTypeNames {
     categories: 'Category'
     category: 'Category'
     item: 'Item'
+    items: 'Item'
     logs: 'Log'
     me: 'User'
     myWarehouses: 'Warehouse'
@@ -632,6 +634,9 @@ export interface NexusGenArgTypes {
     }
     item: { // args
       id: number; // Int!
+    }
+    items: { // args
+      query: string; // String!
     }
     storage: { // args
       id: number; // Int!
