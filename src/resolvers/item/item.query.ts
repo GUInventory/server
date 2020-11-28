@@ -11,7 +11,15 @@ export const ItemQuery = extendType({
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.item.findOne({
           where: { id },
-          include: { outgoings: true, attributes: true },
+          include: {
+            outgoings: true,
+            attributes: true,
+            storage: {
+              include: {
+                warehouse: true,
+              },
+            },
+          },
         })
       },
     })
