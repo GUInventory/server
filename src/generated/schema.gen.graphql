@@ -80,6 +80,13 @@ input CreateItemInput {
   value: Int!
 }
 
+"""Input of create outgoing"""
+input CreateOutgoingInput {
+  description: String!
+  item: ConnectRelation!
+  value: Int!
+}
+
 """Input of create role"""
 input CreateRoleInput {
   roleType: RoleTypeEnum!
@@ -163,11 +170,13 @@ type Mutation {
   changePassword(data: ChangePasswordInput!): User
   createCategory(data: CreateCategoryInput!): Category
   createItem(data: CreateItemInput!): Item
+  createOutgoing(data: CreateOutgoingInput!): Outgoing
   createRole(data: CreateRoleInput!): Role
   createStorage(data: CreateStorageInput!): Storage
   createWarehouse(data: CreateWarehouseInput!): Warehouse
   deleteCategory(id: Int!): Category
   deleteItem(id: Int!): Item
+  deleteOutgoing(id: Int!): Outgoing
   deleteRole(id: Int!): Role
   deleteStorage(id: Int!): Storage
   deleteWarehouse(id: Int!): Warehouse
@@ -177,6 +186,7 @@ type Mutation {
   resetPassword(data: ResetPasswordInput!): Boolean
   updateCategory(data: UpdateCategoryInput!, id: Int!): Category
   updateItem(data: UpdateItemInput!, id: Int!): Item
+  updateOutgoing(data: UpdateOutgoingInput!, id: Int!): Outgoing
   updateRole(data: UpdateRoleInput!, id: Int!): Role
   updateStorage(data: UpdateStorageInput!, id: Int!): Storage
   updateUser(data: UpdateUserInput!, id: Int!): User
@@ -213,6 +223,7 @@ type Query {
   logs: [Log]
   me: User
   myWarehouses: [Warehouse]
+  outgoing(id: Int!): Outgoing
   roles: [Role]
   storage(id: Int!): Storage
   users: [User]
@@ -297,6 +308,13 @@ input UpdateItemInput {
   sizeY: Int
   sizeZ: Int
   storage: ConnectOrDisconnectRelation
+  value: Int
+}
+
+"""Input of update an outgoing"""
+input UpdateOutgoingInput {
+  description: String
+  item: ConnectOrDisconnectRelation
   value: Int
 }
 
