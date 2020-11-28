@@ -358,6 +358,7 @@ export interface NexusGenFieldTypes {
     position: NexusGenRootTypes['Position2D'] | null; // Position2D
     size: NexusGenRootTypes['Size'] | null; // Size
     updatedAt: NexusGenScalars['Date']; // Date!
+    usage: number | null; // Int
     warehouse: NexusGenRootTypes['Warehouse']; // Warehouse!
   }
   Subscription: { // field return type
@@ -526,6 +527,7 @@ export interface NexusGenFieldTypeNames {
     position: 'Position2D'
     size: 'Size'
     updatedAt: 'Date'
+    usage: 'Int'
     warehouse: 'Warehouse'
   }
   Subscription: { // field return type name
