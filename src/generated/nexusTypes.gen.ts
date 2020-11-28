@@ -136,7 +136,7 @@ export interface NexusGenInputs {
 
 export interface NexusGenEnums {
   AttributeTypeEnum: PrismaClient.AttributeTypeEnum
-  LogTypeEnum: "DELETE" | "EDIT" | "UPDATE"
+  LogTypeEnum: "CREATE" | "DELETE" | "UPDATE"
   RoleTypeEnum: "ADMIN" | "EDITOR" | "USER"
 }
 

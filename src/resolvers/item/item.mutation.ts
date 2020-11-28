@@ -36,14 +36,16 @@ export const ItemMutation = extendType({
         data: UpdateItemInput.asArg({ required: true }),
       },
       resolve: async (_, { id, data }, context: Context) => {
+        const findItem = await context.prisma.item.findOne({ where: { id } })
         const item = await context.prisma.item.update({
           where: { id },
           data,
         })
         await log({
-          type: 'EDIT',
+          type: 'UPDATE',
           entityId: id,
           entityName: 'Item',
+          oldValues: findItem,
           newValues: data,
           context,
         })

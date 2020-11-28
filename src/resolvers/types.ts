@@ -40,7 +40,7 @@ export const AttributeTypeEnum = enumType({
 
 export const LogTypeEnum = enumType({
   name: 'LogTypeEnum',
-  members: ['EDIT', 'UPDATE', 'DELETE'],
+  members: ['CREATE', 'UPDATE', 'DELETE'],
 })
 
 export const RoleTypeEnum = enumType({

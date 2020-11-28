@@ -15,7 +15,9 @@ export const log = async ({
       newValues,
       oldValues,
       type,
-      userId: getUserID(context),
+      user: {
+        connect: { id: getUserID(context) },
+      },
     },
   })
 }

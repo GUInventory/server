@@ -154,8 +154,8 @@ input LoginInput {
 }
 
 enum LogTypeEnum {
+  CREATE
   DELETE
-  EDIT
   UPDATE
 }
 
