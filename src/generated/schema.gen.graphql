@@ -270,6 +270,7 @@ type Storage {
   position: Position2D
   size: Size
   updatedAt: Date!
+  usage: Int
   warehouse: Warehouse!
 }
 

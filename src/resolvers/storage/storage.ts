@@ -42,6 +42,19 @@ export const Storage = objectType({
       nullable: false,
     })
 
+    t.field('usage', {
+      type: 'Int',
+      resolve: async ({ id, sizeX, sizeY, sizeZ }, {}, ctx) => {
+        const items = await ctx.prisma.item.findMany({ where: { storageId: id } })
+        const itemsArea = items
+          .map((item) => {
+            return item.sizeX * item.sizeY * item.sizeZ
+          })
+          .reduce((a, b) => a + b, 0)
+        return Math.round((itemsArea / (sizeX * sizeY * sizeZ)) * 100)
+      },
+    })
+
     t.field('createdAt', {
       type: 'Date',
       nullable: false,
