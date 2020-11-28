@@ -41,7 +41,7 @@ export const ItemMutation = extendType({
           data,
         })
         await log({
-          type: 'EDIT',
+          type: 'UPDATE',
           entityId: id,
           entityName: 'Item',
           newValues: data,
