@@ -224,7 +224,7 @@ type Query {
   me: User
   myWarehouses: [Warehouse]
   outgoing(id: Int!): Outgoing
-  roles: [Role]
+  roles(id: Int!): [Role]
   storage(id: Int!): Storage
   users: [User]
   warehouse(id: Int!): Warehouse
