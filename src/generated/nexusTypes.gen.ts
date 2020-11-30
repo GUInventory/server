@@ -673,6 +673,9 @@ export interface NexusGenArgTypes {
     outgoing: { // args
       id: number; // Int!
     }
+    roles: { // args
+      id: number; // Int!
+    }
     storage: { // args
       id: number; // Int!
     }
