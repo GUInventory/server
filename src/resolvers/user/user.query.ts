@@ -14,8 +14,15 @@ export const UserQuery = extendType({
 
     t.field('me', {
       type: 'User',
-      resolve: (_, {}, ctx: Context) => {
-        return ctx.prisma.user.findOne({ where: { id: getUserID(ctx) } })
+      resolve: async (_, {}, ctx: Context) => {
+        return await ctx.prisma.user.findOne({
+          where: { id: getUserID(ctx) },
+          include: {
+            roles: {
+              include: { warehouse: true },
+            },
+          },
+        })
       },
     })
   },
