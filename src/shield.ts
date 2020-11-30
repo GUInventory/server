@@ -24,9 +24,6 @@ export const shield = GQLShield(
     Mutation: {
       login: allow,
       register: allow,
-      updateUser: isGlobalAdmin,
-      createRole: isGlobalAdmin,
-      updateRole: isGlobalAdmin,
     },
   },
   {
