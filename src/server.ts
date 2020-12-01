@@ -7,12 +7,13 @@ import express from 'express'
 import { schema } from './schema'
 import { shield } from './shield'
 import { verifyToken } from './utils/authentication'
+import bodyParser from 'body-parser'
 
 const app = express()
 const server = createServer(app)
 const prisma = new PrismaClient()
 const pubsub = new PubSub()
-
+app.use(bodyParser.json({ limit: '10mb' }))
 const apollo = new ApolloServer({
   subscriptions: {
     onConnect: async (header: { Authorization: null | string }) => {
