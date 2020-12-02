@@ -16,3 +16,5 @@
 20201114180927-add-log
 20201125201046-add-user-to-log
 20201128181918-fix-log-enum
+20201202180631-add-warehouse-item-relation
+20201202195239-make-storage-optional

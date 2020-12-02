@@ -30,6 +30,7 @@ export const UpdateItemInput = inputObjectType({
     t.int('positionX')
     t.int('positionY')
     t.int('positionZ')
-    t.field('storage', { type: 'ConnectOrDisconnectRelation' })
+    t.field('storage', { type: 'ConnectRelation' })
+    t.boolean('moveToWarehouse')
   },
 })

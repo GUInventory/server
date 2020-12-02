@@ -35,7 +35,7 @@ export interface NexusGenInputs {
   }
   ConnectOrDisconnectRelation: { // input type
     connect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
-    disconnect?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
+    disconnect?: boolean | null; // Boolean
   }
   ConnectRelation: { // input type
     id: number; // Int!
@@ -104,6 +104,7 @@ export interface NexusGenInputs {
   }
   UpdateItemInput: { // input type
     image?: string | null; // String
+    moveToWarehouse?: boolean | null; // Boolean
     name?: string | null; // String
     positionX?: number | null; // Int
     positionY?: number | null; // Int
@@ -111,7 +112,7 @@ export interface NexusGenInputs {
     sizeX?: number | null; // Int
     sizeY?: number | null; // Int
     sizeZ?: number | null; // Int
-    storage?: NexusGenInputs['ConnectOrDisconnectRelation'] | null; // ConnectOrDisconnectRelation
+    storage?: NexusGenInputs['ConnectRelation'] | null; // ConnectRelation
     value?: number | null; // Int
   }
   UpdateOutgoingInput: { // input type
@@ -274,9 +275,10 @@ export interface NexusGenFieldTypes {
     outgoings: NexusGenRootTypes['Outgoing'][] | null; // [Outgoing!]
     position: NexusGenRootTypes['Position3D'] | null; // Position3D
     size: NexusGenRootTypes['Size'] | null; // Size
-    storage: NexusGenRootTypes['Storage']; // Storage!
+    storage: NexusGenRootTypes['Storage'] | null; // Storage
     updatedAt: NexusGenScalars['Date']; // Date!
     value: number | null; // Int
+    warehouse: NexusGenRootTypes['Warehouse'] | null; // Warehouse
   }
   Log: { // field return type
     createdAt: NexusGenScalars['Date']; // Date!
@@ -396,6 +398,7 @@ export interface NexusGenFieldTypes {
   Warehouse: { // field return type
     createdAt: NexusGenScalars['Date']; // Date!
     id: string | null; // ID
+    items: NexusGenRootTypes['Item'][] | null; // [Item!]
     name: string | null; // String
     roles: NexusGenRootTypes['Role'][] | null; // [Role!]
     size: NexusGenRootTypes['Size'] | null; // Size
@@ -450,6 +453,7 @@ export interface NexusGenFieldTypeNames {
     storage: 'Storage'
     updatedAt: 'Date'
     value: 'Int'
+    warehouse: 'Warehouse'
   }
   Log: { // field return type name
     createdAt: 'Date'
@@ -569,6 +573,7 @@ export interface NexusGenFieldTypeNames {
   Warehouse: { // field return type name
     createdAt: 'Date'
     id: 'ID'
+    items: 'Item'
     name: 'String'
     roles: 'Role'
     size: 'Size'

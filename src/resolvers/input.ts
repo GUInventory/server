@@ -12,6 +12,6 @@ export const ConnectOrDisconnectRelation = inputObjectType({
   name: 'ConnectOrDisconnectRelation',
   definition(t) {
     t.field('connect', { type: 'ConnectRelation' })
-    t.field('disconnect', { type: 'ConnectRelation' })
+    t.boolean('disconnect')
   },
 })

@@ -35,18 +35,33 @@ export const ItemMutation = extendType({
         id: intArg({ required: true }),
         data: UpdateItemInput.asArg({ required: true }),
       },
-      resolve: async (_, { id, data }, context: Context) => {
-        const findItem = await context.prisma.item.findOne({ where: { id } })
+      resolve: async (_, { id, data: { storage, moveToWarehouse, ...rest } }, context: Context) => {
+        const findItem = await context.prisma.item.findOne({
+          where: { id },
+          include: { warehouse: true, storage: { include: { warehouse: true } } },
+        })
+        const optionalAttributes = moveToWarehouse
+          ? {
+              warehouse: { connect: { id: findItem.storage.warehouse.id } },
+              ...(findItem.storage && { storage: { disconnect: true } }),
+            }
+          : {
+              ...(findItem.warehouse && { warehouse: { disconnect: true } }),
+              storage: { connect: storage },
+            }
         const item = await context.prisma.item.update({
           where: { id },
-          data,
+          data: {
+            ...optionalAttributes,
+            ...rest,
+          },
         })
         await log({
           type: 'UPDATE',
           entityId: id,
           entityName: 'Item',
           oldValues: findItem,
-          newValues: data,
+          newValues: { storage, moveToWarehouse, ...rest },
           context,
         })
         await publishItemEvent('itemUpdated', item, context)
