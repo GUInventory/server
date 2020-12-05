@@ -3,9 +3,9 @@ services:
   server:
     build: .
     links:
-      - mysql
+      - postgres
     depends_on:
-      - mysql
+      - postgres
     ports:
       - '${SERVER_PORT}:4000'
       - '${STUDIO_PORT}:5555'
@@ -15,21 +15,20 @@ services:
       APP_SECRET: ${APP_SECRET}
     networks:
       - server-network
-  mysql:
-    image: mysql:5.7
+  postgres:
+    image: postgres:12.5
     restart: always
     environment:
-      MYSQL_USER: prisma
-      MYSQL_PASSWORD: prisma
-      MYSQL_ROOT_PASSWORD: prisma
-      MYSQL_DATABASE: prisma
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+      POSTGRES_DB: prisma
     networks:
       server-network:
         aliases:
-          - mysql.db
+          - postgresql.db
     volumes:
-      - db_data:/var/lib/mysql
-volumes: 
+      - db_data:/var/lib/postgresql/data
+volumes:
   db_data:
 networks:
   server-network:

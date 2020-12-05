@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:10.23
 RUN mkdir /usr/src/server
 WORKDIR /usr/src/server
 
