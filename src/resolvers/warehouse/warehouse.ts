@@ -23,6 +23,12 @@ export const Warehouse = objectType({
       nullable: true,
     })
 
+    t.field('items', {
+      type: 'Item',
+      list: [true],
+      nullable: true,
+    })
+
     t.field('users', {
       type: 'User',
       list: [true],

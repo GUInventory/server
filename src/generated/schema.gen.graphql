@@ -51,7 +51,7 @@ input ChangePasswordInput {
 
 input ConnectOrDisconnectRelation {
   connect: ConnectRelation
-  disconnect: ConnectRelation
+  disconnect: Boolean
 }
 
 """Connect a related entity"""
@@ -134,9 +134,10 @@ type Item {
   outgoings: [Outgoing!]
   position: Position3D
   size: Size
-  storage: Storage!
+  storage: Storage
   updatedAt: Date!
   value: Int
+  warehouse: Warehouse
 }
 
 """JSON scalar type"""
@@ -300,6 +301,7 @@ input UpdateCategoryInput {
 """Input of update an item"""
 input UpdateItemInput {
   image: String
+  moveToWarehouse: Boolean
   name: String
   positionX: Int
   positionY: Int
@@ -307,7 +309,7 @@ input UpdateItemInput {
   sizeX: Int
   sizeY: Int
   sizeZ: Int
-  storage: ConnectOrDisconnectRelation
+  storage: ConnectRelation
   value: Int
 }
 
@@ -364,6 +366,7 @@ type User {
 type Warehouse {
   createdAt: Date!
   id: ID
+  items: [Item!]
   name: String
   roles: [Role!]
   size: Size

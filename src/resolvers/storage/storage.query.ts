@@ -11,7 +11,7 @@ export const StorageQuery = extendType({
       resolve: (_, { id }, ctx) => {
         return ctx.prisma.storage.findOne({
           where: { id },
-          include: { items: true, warehouse: true },
+          include: { items: true, warehouse: { include: { items: true } } },
         })
       },
     })

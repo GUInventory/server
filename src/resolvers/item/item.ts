@@ -32,7 +32,12 @@ export const Item = objectType({
 
     t.field('storage', {
       type: 'Storage',
-      nullable: false,
+      nullable: true,
+    })
+
+    t.field('warehouse', {
+      type: 'Warehouse',
+      nullable: true,
     })
 
     t.field('outgoings', {
