@@ -1,11 +1,9 @@
 import { extendType, intArg } from '@nexus/schema'
-import { Stream } from 'stream'
-import { v4 as uuid } from 'uuid'
-import { Storage } from '@google-cloud/storage'
 import { CreateItemInput, UpdateItemInput } from './item.input'
 import { Context } from '../../types'
 import { publishItemEvent } from './item.subscription'
 import { log } from '../../utils/log'
+import { uploadImage } from './item.utils'
 
 export const ItemMutation = extendType({
   type: 'Mutation',
@@ -14,31 +12,7 @@ export const ItemMutation = extendType({
       type: 'Item',
       args: { data: CreateItemInput.asArg({ required: true }) },
       resolve: async (_, { data: { storage, image, ...rest } }, context: Context) => {
-        const base64EncodedImageString = image.replace(/^data:image\/\w+;base64,/, '')
-
-        const bufferStream = new Stream.PassThrough()
-        bufferStream.end(Buffer.from(base64EncodedImageString, 'base64'))
-
-        const GoogleStorage = new Storage({
-          projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
-        })
-
-        const googleCloudBucket = GoogleStorage.bucket(process.env.GOOGLE_CLOUD_BUCKET_NAME)
-        const fileName = `${uuid()}.jpg`
-        const uploadedFile = googleCloudBucket.file(fileName)
-        const imageURL = await new Promise<string>((resolve, reject) => {
-          bufferStream
-            .pipe(uploadedFile.createWriteStream())
-            .on('error', (err) => {
-              reject(err)
-            })
-            .on('finish', () =>
-              resolve(
-                `https://storage.googleapis.com/${process.env.GOOGLE_CLOUD_BUCKET_NAME}/${fileName}`,
-              ),
-            )
-        })
-
+        const imageURL = await uploadImage(image)
         const item = await context.prisma.item.create({
           data: {
             storage: { connect: storage },
@@ -64,7 +38,11 @@ export const ItemMutation = extendType({
         id: intArg({ required: true }),
         data: UpdateItemInput.asArg({ required: true }),
       },
-      resolve: async (_, { id, data: { storage, moveToWarehouse, ...rest } }, context: Context) => {
+      resolve: async (
+        _,
+        { id, data: { storage, moveToWarehouse, image, ...rest } },
+        context: Context,
+      ) => {
         const findItem = await context.prisma.item.findOne({
           where: { id },
           include: { warehouse: true, storage: { include: { warehouse: true } } },
@@ -78,9 +56,14 @@ export const ItemMutation = extendType({
               ...(findItem.warehouse && { warehouse: { disconnect: true } }),
               storage: { connect: storage },
             }
+        let imageURL = findItem.image
+        if (image) {
+          imageURL = await uploadImage(image)
+        }
         const item = await context.prisma.item.update({
           where: { id },
           data: {
+            image: imageURL,
             ...optionalAttributes,
             ...rest,
           },
