@@ -3,3 +3,4 @@ node_modules/
 prisma/.env
 .vscode/
 dist/
+google-storage-credentials.json
